@@ -19,7 +19,18 @@
 }
 
 .img-robos{
-	width:50%;
-	height:50%;
-	object-fit:cover;
+	width:200px;
+	height:200px;
+	object-fit:fill;
+}
+
+.button-aposta{
+	background-color:#ED145B;
+	color:#FFF;
+	width:20vw;
+	height:5vh;
+	font-size:18px;
+	border-radius:10px;
+	  border: none;
+	
 }
