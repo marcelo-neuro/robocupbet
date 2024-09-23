@@ -8,8 +8,8 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class ConnectionPool {
 	 private static final String ORACLE_URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL",
-			 	ORACLE_USER = "", //coloque o usuario
-			 	ORACLE_PASSWORD = ""; //coloque o password
+			 	ORACLE_USER = "rm551285", //coloque o usuario
+			 	ORACLE_PASSWORD = "130805"; //coloque o password
 	 
 	 private static HikariDataSource dataSource;
 	 
