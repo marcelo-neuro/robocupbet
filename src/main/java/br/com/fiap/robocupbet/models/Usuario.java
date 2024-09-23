@@ -14,7 +14,7 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	private Usuario() {}
+	public Usuario() {}
 
 	public int getId() {
 		return id;
