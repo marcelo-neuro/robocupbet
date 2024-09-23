@@ -1,11 +1,32 @@
 @charset "UTF-8";
 
+html, body{
+	height:100%;
+	margin: 0;
+	padding:0;
+}
+
 .bg-robocup{
 	background-image: url("assets/imagens/robocup.jpg");
 	width: 100%;	
 	height: 100%;
 }
 
+.position-loja {
+    position: absolute;
+    top: 9%;
+    right: 5%;
+}
+
+.img-loja{
+	width:150px;
+	height:150px;
+	object-fit:contain;
+}
+
+.title-cup{
+	color: #ED145B;
+}
 
 .form-usuario{
   	border-width: 3px;
