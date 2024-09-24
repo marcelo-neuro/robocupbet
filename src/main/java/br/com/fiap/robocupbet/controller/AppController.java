@@ -44,7 +44,7 @@ public class AppController {
 		this.premioDAO = new PremioDAO(connection);
 	}
 
-	public static AppController getInstance() throws SQLException {
+	public static AppController getInstance() {
 		if (instance == null) {
 			instance = new AppController();
 		}
@@ -58,7 +58,7 @@ public class AppController {
 	}
 
 	// Metodos do Usuario
-	public void adicionarUsuario(Usuario usuario) throws SQLException {
+	public void adicionarUsuario(Usuario usuario) {
 		usuarioDAO.insert(usuario);
 	}
 
