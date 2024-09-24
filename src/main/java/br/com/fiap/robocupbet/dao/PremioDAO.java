@@ -29,7 +29,7 @@ public class PremioDAO {
 			stmt.setString(5, premio.getUrlFoto());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -48,7 +48,7 @@ public class PremioDAO {
 			stmt.setInt(6, premio.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -62,7 +62,7 @@ public class PremioDAO {
 			stmt.setInt(1, premio.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException (e);
 		}
@@ -88,7 +88,7 @@ public class PremioDAO {
 			
 			rs.close();
 			stmt.close();
-			con.close();
+			
 			return premios;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -114,7 +114,7 @@ public class PremioDAO {
 			stmt.execute();
 			stmt.close();
 			rs.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

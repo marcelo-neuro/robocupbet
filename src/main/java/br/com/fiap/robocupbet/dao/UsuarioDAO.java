@@ -26,7 +26,7 @@ public class UsuarioDAO {
 			stmt.setString(3, usuario.getSenha());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -44,7 +44,7 @@ public class UsuarioDAO {
 			stmt.setInt(5, usuario.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -58,7 +58,7 @@ public class UsuarioDAO {
 			stmt.setInt(1, usuario.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException (e);
 		}
@@ -83,7 +83,7 @@ public class UsuarioDAO {
 			
 			rs.close();
 			stmt.close();
-			con.close();
+			
 			return usuarios;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -108,7 +108,7 @@ public class UsuarioDAO {
 			stmt.execute();
 			stmt.close();
 			rs.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -132,7 +132,7 @@ public class UsuarioDAO {
 			stmt.execute();
 			stmt.close();
 			rs.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

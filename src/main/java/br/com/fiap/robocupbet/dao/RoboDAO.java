@@ -30,7 +30,7 @@ public class RoboDAO {
 			stmt.setString(6, robo.getUrlFoto());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -50,7 +50,7 @@ public class RoboDAO {
 			stmt.setInt(7, robo.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -64,7 +64,7 @@ public class RoboDAO {
 			stmt.setInt(1, robo.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException (e);
 		}
@@ -91,7 +91,7 @@ public class RoboDAO {
 			
 			rs.close();
 			stmt.close();
-			con.close();
+			
 			return robos;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -118,7 +118,7 @@ public class RoboDAO {
 			stmt.execute();
 			stmt.close();
 			rs.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
