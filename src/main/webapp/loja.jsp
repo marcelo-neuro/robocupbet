@@ -37,10 +37,14 @@
 				<p class="fs-4 text-light">$3000</p>
 				<button class="btn btn-style text-light fw-bold m-3 px-5">Comprar</button>
 			</div>
-
-			<h2 class="text-light">Wingslopmson FIAP</h2>
-			<p class="fs-4 text-light">$8000</p>
-			<button class="btn btn-style text-light fw-bold m-3 px-5">Comprar</button>
+			<span class="w-75 fiap-border"></span>
+			<div class="d-flex flex-column align-items-center mt-5 mb-5">
+				<img src="assets/imagens/wingslompson.png"
+					class="img-loja img-fluid">
+				<h2 class="text-light">Wingslopmson FIAP</h2>
+				<p class="fs-4 text-light">$8000</p>
+				<button class="btn btn-style text-light fw-bold m-3 px-5">Comprar</button>
+			</div>
 			<span class="w-75 fiap-border"></span>
 			<div class="d-flex flex-column align-items-center mt-5 mb-5">
 				<img src="assets/imagens/FIAP-Apoiador.png"
