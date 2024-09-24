@@ -12,7 +12,7 @@
 	<main class="container h-100 d-flex flex-column justify-content-center align-items-center">
 		<article
 			class="row bg-robocup d-flex justify-content-center align-items-center">
-			<form class="form-usuario w-50">
+			<form class="form-usuario w-50 bg-fiap-grey">
 				<h2 class="text-center text-light fs-3">Login</h2>
 				<div class="p-4">
 					<div class="mb-3">
