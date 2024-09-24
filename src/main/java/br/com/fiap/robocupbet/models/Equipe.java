@@ -2,6 +2,7 @@ package br.com.fiap.robocupbet.models;
 
 public class Equipe {
 	private int id;
+	private int idPartida;
 	private int idRobo;
 	private String nome;
 	
@@ -34,6 +35,14 @@ public class Equipe {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public int getIdPartida() {
+		return idPartida;
+	}
+
+	public void setIdPartida(int idPartida) {
+		this.idPartida = idPartida;
 	}
 	
 	

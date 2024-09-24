@@ -9,11 +9,17 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="bg-black">
+<<<<<<< HEAD
 	<main
 		class="container h-100 d-flex flex-column justify-content-center align-items-center">
 		<article
 			class="row bg-robocup d-flex justify-content-center align-items-center">
 			<form class="form-usuario w-50 bg-black">
+=======
+	<main class="container h-100 d-flex justify-content-center align-items-center">
+		<article class="row bg-robocup d-flex justify-content-center align-items-center">
+			<form class="form-usuario w-50 bg-fiap-grey">
+>>>>>>> eb33247e004cc6d1a987ea28f4165bd9cf0868cd
 				<h2 class="text-center text-light fs-3">Crie uma conta</h2>
 				<div class="p-4">
 					<div class="mb-3">
