@@ -28,7 +28,7 @@
 						<input type="password" class="form-control" id="exampleInputPassword1">
 					</div>
 					<div class="mt-3">
-						<button type="submit" class="btn btn-style w-100 text-light fw-bold mt-3">Submit</button>
+						<button type="submit" class="btn btn-style w-100 text-light fw-bold mt-3">Criar conta</button>
 					</div>
 				</div>
 			</form>

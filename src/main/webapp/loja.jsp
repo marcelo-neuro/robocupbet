@@ -13,12 +13,14 @@
 	<main
 		class="container d-flex flex-column justify-content-center align-items-center">
 
-		<h1 class="text-light">Loja de Items</h1>
+		<h1 class="text-light">Loja de Itens</h1>
 
 		<div
 			class="position-loja form-usuario mt-4 me-5 d-flex flex-column align-items-center">
-			<p class="px-5 text-center text-light mt-2">Saldo: 1000</p>
-			<button class="btn btn-style w-75 text-light fw-bold m-2">RoboBet</button>
+			<p class="px-5 text-center text-light mt-2">FIAPoints: 1000</p>
+			<a href="http://localhost:8080/robocupbet/robobet.jsp"
+				class="btn btn-style w-75 text-light fw-bold m-2"> RoboBet 
+			</a>
 		</div>
 
 		<div
@@ -37,7 +39,8 @@
 				<button class="btn btn-style text-light fw-bold m-3 px-5">Comprar</button>
 			</div>
 			<div class="d-flex flex-column align-items-center mt-5">
-				<img src="assets/imagens/wingslompson.png" class="img-loja img-fluid">
+				<img src="assets/imagens/wingslompson.png"
+					class="img-loja img-fluid">
 				<h2 class="text-light">Wingslopmson FIAP</h2>
 				<p class="fs-4 text-light">$8000</p>
 				<button class="btn btn-style text-light fw-bold m-3 px-5">Comprar</button>
