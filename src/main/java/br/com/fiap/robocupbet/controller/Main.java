@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.fiap.robocupbet.connection.ConnectionFactory;
-
 /**
  * Servlet implementation class Main
  */
