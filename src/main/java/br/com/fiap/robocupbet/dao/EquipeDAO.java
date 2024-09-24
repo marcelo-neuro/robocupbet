@@ -48,12 +48,12 @@ public class EquipeDAO {
 		}
 	}
 	
-	public void delete(Equipe equipe) {
+	public void delete(int id) {
 		String sql = "DELETE FROM equipes WHERE id_equipe = ?";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, equipe.getId());
+			stmt.setInt(1, id);
 			stmt.execute();
 			stmt.close();
 			
@@ -87,12 +87,13 @@ public class EquipeDAO {
 		}
 	}
 	
-	public void findById (Equipe equipe) {
+	public Equipe findById (int id) {
 		try {
 			String sql = "SELECT * FROM equipes WHERE id_equipe = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-			stmt.setInt(1, equipe.getId());
+			stmt.setInt(1, id);
+			Equipe equipe = new Equipe();
 			
 			while (rs.next()) {
 				equipe.setId(rs.getInt(1));
@@ -105,6 +106,7 @@ public class EquipeDAO {
 			stmt.close();
 			rs.close();
 			
+			return equipe;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
