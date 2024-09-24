@@ -13,7 +13,7 @@
 	<main
 		class="container d-flex flex-column justify-content-center align-items-center">
 
-		<h1 class="">Loja de Items</h1>
+		<h1 class="text-light">Loja de Items</h1>
 
 		<div
 			class="position-loja form-usuario mt-4 me-5 d-flex flex-column align-items-center">
