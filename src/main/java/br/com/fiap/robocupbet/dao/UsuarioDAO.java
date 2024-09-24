@@ -120,9 +120,9 @@ public class UsuarioDAO {
 		try {
 			String sql = "SELECT * FROM usuarios WHERE email_usuario = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
-			stmt.setString(1, email);
-			stmt.setString(1, email);
+			
 			Usuario usuario = new Usuario();
 
 			while (rs.next()) {
@@ -141,5 +141,18 @@ public class UsuarioDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public boolean validate(String email, String senha) {
+		List<Usuario> us = findAll();
+		for(Usuario u: us) {
+			System.out.println(u.getEmail());
+			System.out.println(u.getSenha());
+			if(u.getEmail().equals(email) && u.getSenha().equals(senha)) {
+				
+				return true;
+			}
+		}
+		return true;
 	}
 }
