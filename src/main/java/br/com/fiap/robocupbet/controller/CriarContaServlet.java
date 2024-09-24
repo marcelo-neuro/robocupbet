@@ -13,10 +13,10 @@ import br.com.fiap.robocupbet.util.Encode;
 /**
  * Servlet implementation class CriarContaServler
  */
-@WebServlet("/criarConta")
+@WebServlet("/criaConta")
 public class CriarContaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+       private AppController appController = AppController.getInstance();
     
     public CriarContaServlet() {
         super();
@@ -30,7 +30,10 @@ public class CriarContaServlet extends HttpServlet {
 		u.setEmail(request.getParameter("usuarioEmail"));
 		u.setSenha(Encode.sha256(request.getParameter("usuarioSenha")));
 		
+		appController.adicionarUsuario(u);
 		
+		request.setAttribute("usuario", u);
+		request.getRequestDispatcher("/robobet.jsp").forward(request, response);
 	}
 
 }

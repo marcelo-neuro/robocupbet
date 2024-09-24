@@ -52,12 +52,12 @@ public class IntegranteDAO {
 		}
 	}
 	
-	public void delete(Integrante integrante) {
+	public void delete(int id) {
 		String sql = "DELETE FROM integrantes WHERE id_integrantes = ?";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, integrante.getId());
+			stmt.setInt(1, id);
 			stmt.execute();
 			stmt.close();
 			
@@ -92,12 +92,13 @@ public class IntegranteDAO {
 		}
 	}
 	
-	public void findById (Integrante integrante) {
+	public Integrante findById (int id) {
 		try {
 			String sql = "SELECT * FROM integrantes WHERE id_integrantes = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-			stmt.setInt(1, integrante.getId());
+			stmt.setInt(1, id);
+			Integrante integrante = new Integrante();
 			
 			while (rs.next()) {
 				integrante.setId(rs.getInt(1));
@@ -111,6 +112,7 @@ public class IntegranteDAO {
 			stmt.close();
 			rs.close();
 			
+			return integrante;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
