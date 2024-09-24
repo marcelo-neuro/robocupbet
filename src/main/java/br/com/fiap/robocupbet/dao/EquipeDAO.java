@@ -112,4 +112,31 @@ public class EquipeDAO {
 		}
 	}
 	
+	public List<Equipe> findByPartida(int idPartida) {
+		List<Equipe> es = new ArrayList<Equipe>();
+		String sql = """
+				SELECT * FROM equipes
+				WHERE equipes.id_partida = ?
+				""";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idPartida);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Equipe equipe = new Equipe();
+				equipe.setId(rs.getInt(1));
+				equipe.setIdPartida(rs.getInt(2));
+				equipe.setIdRobo(rs.getInt(3));
+				equipe.setNome(rs.getString(4));
+				es.add(equipe);
+			}
+			return es;
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+	
 }

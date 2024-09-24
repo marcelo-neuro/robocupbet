@@ -23,6 +23,7 @@
 				class="btn btn-style w-75 text-light fw-bold m-2"> Loja </a>
 		</div>
 
+
 		<div
 			class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey">
 			<div
@@ -57,6 +58,9 @@
 				<button class="button-aposta">Confirmar aposta</button>
 			</div>
 		</div>
+
+
+
 
 		<div
 			class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey">
