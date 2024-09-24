@@ -78,8 +78,12 @@ public class AppController {
 		return usuarioDAO.findAll();
 	}
 
-	public Usuario listarUsuariosPorEmail(String email) throws SQLException {
+	public Usuario listarUsuariosPorEmail(String email) {
 		return usuarioDAO.findByEmail(email);
+	}
+	
+	public boolean validaUsuario(String email, String senha) {
+		return usuarioDAO.validate(email, senha);
 	}
 
 	// metodos do robo
