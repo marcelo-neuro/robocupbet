@@ -9,9 +9,9 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="bg-black">
-	<main class="container">
+	<main class="container h-100 d-flex flex-column justify-content-center align-items-center">
 		<article
-			class="row d-flex justify-content-center align-items-center">
+			class="row bg-robocup d-flex justify-content-center align-items-center">
 			<form class="form-usuario w-50">
 				<h2 class="text-center text-light fs-3">Login</h2>
 				<div class="p-4">

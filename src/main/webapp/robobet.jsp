@@ -11,6 +11,14 @@
 <body class="bg-black">
 	<main
 		class="container d-flex flex-column justify-content-center align-items-center">
+
+		<h1 class="text-light"><span class="title-cup">ROBOCUP</span> BET</h1>
+		<div
+			class="position-loja form-usuario mt-4 me-5 d-flex flex-column align-items-center">
+			<p class="px-5 text-center text-light mt-2">Saldo: 1000</p>
+			<button class="btn btn-style w-75 text-light fw-bold m-2">Loja</button>
+		</div>
+
 		<div
 			class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5">
 			<div
