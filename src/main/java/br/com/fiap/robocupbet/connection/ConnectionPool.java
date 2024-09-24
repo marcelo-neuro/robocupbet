@@ -7,7 +7,8 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 public class ConnectionPool {
-	private static final String ORACLE_URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL", ORACLE_USER = "",
+	private static final String ORACLE_URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL", 
+			ORACLE_USER = "",
 			ORACLE_PASSWORD = "";
 	private static HikariDataSource ds;
 

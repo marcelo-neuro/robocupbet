@@ -51,12 +51,12 @@ public class ApostaDAO {
 		}
 	}
 	
-	public void delete(Aposta aposta) {
+	public void delete(int id) {
 		String sql = "DELETE FROM apostas WHERE id_aposta = ?";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, aposta.getId());
+			stmt.setInt(1, id);
 			stmt.execute();
 			stmt.close();
 			con.close();
@@ -92,12 +92,13 @@ public class ApostaDAO {
 		}
 	}
 	
-	public void findById (Aposta aposta) {
+	public Aposta findById (int id) {
 		try {
 			String sql = "SELECT * FROM apostas WHERE id_aposta = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-			stmt.setInt(1, aposta.getId());
+			stmt.setInt(1, id);
+			Aposta aposta = new Aposta();
 			
 			while (rs.next()) {
 				aposta.setId(rs.getInt(1));
@@ -111,7 +112,8 @@ public class ApostaDAO {
 			stmt.execute();
 			stmt.close();
 			rs.close();
-			con.close();
+			
+			return aposta;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

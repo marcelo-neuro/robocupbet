@@ -56,12 +56,12 @@ public class RoboDAO {
 		}
 	}
 	
-	public void delete(Robo robo) {
+	public void delete(int id) {
 		String sql = "DELETE FROM robos WHERE id_robo = ?";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, robo.getId());
+			stmt.setInt(1, id);
 			stmt.execute();
 			stmt.close();
 			
@@ -98,12 +98,13 @@ public class RoboDAO {
 		}
 	}
 	
-	public void findById (Robo robo) {
+	public Robo findById (int id) {
 		try {
 			String sql = "SELECT * FROM robos WHERE id_robo = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-			stmt.setInt(1, robo.getId());
+			stmt.setInt(1, id);
+			Robo robo = new Robo();
 			
 			while (rs.next()) {
 				robo.setId(rs.getInt(1));
@@ -118,6 +119,7 @@ public class RoboDAO {
 			stmt.execute();
 			stmt.close();
 			rs.close();
+			return robo;
 			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
