@@ -73,11 +73,11 @@ public class UsuarioDAO {
 
 			while (rs.next()) {
 				Usuario usuario = new Usuario();
-				usuario.setId(rs.getInt(1));
-				usuario.setNome(rs.getString(2));
-				usuario.setEmail(rs.getString(3));
-				usuario.setSenha(rs.getString(4));
-				usuario.setPontos(rs.getInt(5));
+				usuario.setId(rs.getInt("id_usuario"));
+				usuario.setNome(rs.getString("nome_usuario"));
+				usuario.setEmail(rs.getString("email_usuario"));
+				usuario.setSenha(rs.getString("senha_usuario"));
+				usuario.setPontos(rs.getInt("pontos_usuario"));
 				usuarios.add(usuario);
 			}
 
@@ -99,11 +99,11 @@ public class UsuarioDAO {
 			Usuario usuario = new Usuario();
 
 			while (rs.next()) {
-				usuario.setId(rs.getInt(1));
-				usuario.setNome(rs.getString(2));
-				usuario.setEmail(rs.getString(3));
-				usuario.setSenha(rs.getString(4));
-				usuario.setPontos(rs.getInt(5));
+				usuario.setId(rs.getInt("id_usuario"));
+				usuario.setNome(rs.getString("nome_usuario"));
+				usuario.setEmail(rs.getString("email_usuario"));
+				usuario.setSenha(rs.getString("senha_usuario"));
+				usuario.setPontos(rs.getInt("pontos_usuario"));
 			}
 
 			stmt.execute();
@@ -126,11 +126,11 @@ public class UsuarioDAO {
 			Usuario usuario = new Usuario();
 
 			while (rs.next()) {
-				usuario.setId(rs.getInt(1));
-				usuario.setNome(rs.getString(2));
-				usuario.setEmail(rs.getString(3));
-				usuario.setSenha(rs.getString(4));
-				usuario.setPontos(rs.getInt(5));
+				usuario.setId(rs.getInt("id_usuario"));
+				usuario.setNome(rs.getString("nome_usuario"));
+				usuario.setEmail(rs.getString("email_usuario"));
+				usuario.setSenha(rs.getString("senha_usuario"));
+				usuario.setPontos(rs.getInt("pontos_usuario"));
 			}
 
 			stmt.execute();
