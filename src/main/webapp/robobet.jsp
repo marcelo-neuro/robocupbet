@@ -14,10 +14,6 @@
 
 		<h1 class="text-light"><span class="title-cup">ROBOCUP</span> BET</h1>
 		<div
-
-		</div>
-
-		<div
 			class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey">
 			<div
 				class="d-flex flex-row justify-content-center align-items-center w-100">
