@@ -9,12 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.fiap.robocupbet.connection.ConnectionFactory;
-
 /**
  * Servlet implementation class Main
  */
-@WebServlet("/Main")
+@WebServlet("")
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,9 +25,7 @@ public class Main extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ConnectionFactory con = new ConnectionFactory();
-		Connection c = con.getConnection();
-		response.getWriter().append("Served at: "+c).append(request.getContextPath());
+		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 
 	/**

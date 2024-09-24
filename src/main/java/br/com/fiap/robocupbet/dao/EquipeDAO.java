@@ -25,7 +25,7 @@ public class EquipeDAO {
 			stmt.setString(1, equipe.getNome());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -42,7 +42,7 @@ public class EquipeDAO {
 			stmt.setString(4, equipe.getNome());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -56,7 +56,7 @@ public class EquipeDAO {
 			stmt.setInt(1, equipe.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException (e);
 		}
@@ -80,7 +80,7 @@ public class EquipeDAO {
 			
 			rs.close();
 			stmt.close();
-			con.close();
+			
 			return equipes;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -104,7 +104,7 @@ public class EquipeDAO {
 			stmt.execute();
 			stmt.close();
 			rs.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

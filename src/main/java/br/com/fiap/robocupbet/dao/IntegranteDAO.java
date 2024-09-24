@@ -28,7 +28,7 @@ public class IntegranteDAO {
 			stmt.setString(4, integrante.getUrlFoto());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -46,7 +46,7 @@ public class IntegranteDAO {
 			stmt.setInt(5, integrante.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -60,7 +60,7 @@ public class IntegranteDAO {
 			stmt.setInt(1, integrante.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException (e);
 		}
@@ -85,7 +85,7 @@ public class IntegranteDAO {
 			
 			rs.close();
 			stmt.close();
-			con.close();
+			
 			return integrantes;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -110,7 +110,7 @@ public class IntegranteDAO {
 			stmt.execute();
 			stmt.close();
 			rs.close();
-			con.close();
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
