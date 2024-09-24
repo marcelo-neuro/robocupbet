@@ -12,6 +12,10 @@ html, body{
 	height: 100%;
 }
 
+.bg-fiap-grey{
+	background-color: #1F1F1F;
+}
+
 .position-loja {
     position: absolute;
     top: 9%;
@@ -26,6 +30,12 @@ html, body{
 
 .title-cup{
 	color: #ED145B;
+}
+
+.fiap-border{
+	border-width: 0.5px;
+	border-style: solid;
+	border-color: #ED145B;
 }
 
 .form-usuario{
