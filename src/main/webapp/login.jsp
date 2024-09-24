@@ -12,7 +12,7 @@
 	<main class="container h-100 d-flex flex-column justify-content-center align-items-center">
 		<article
 			class="row bg-robocup d-flex justify-content-center align-items-center">
-			<form class="form-usuario w-50">
+			<form class="form-usuario w-50 bg-black">
 				<h2 class="text-center text-light fs-3">Login</h2>
 				<div class="p-4">
 					<div class="mb-3">
@@ -29,6 +29,10 @@
 						<button type="submit"
 							class="btn btn-style w-100 text-light fw-bold mt-3">Entrar</button>
 					</div>
+					<div class="mt-3 d-flex">
+						<a href="http://localhost:8080/robocupbet/criarConta.jsp">Criar conta</a>
+					</div>
+					
 				</div>
 			</form>
 		</article>
