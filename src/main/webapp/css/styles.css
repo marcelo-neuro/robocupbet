@@ -13,8 +13,6 @@ html, body{
     background-repeat: no-repeat; 
     width: 100vw; 
     height: 100vh; 
-    opacity: 0.5;
-
 }
 
 .bg-fiap-grey{
@@ -31,6 +29,10 @@ html, body{
 	width:150px;
 	height:150px;
 	object-fit:contain;
+}
+
+.link-conta{
+	text-decoration:none;
 }
 
 .title-cup{
