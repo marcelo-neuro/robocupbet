@@ -15,6 +15,11 @@ html, body{
     height: 100vh; 
 }
 
+.crime{
+	position:absolute;
+   	top: 5%;
+}
+
 .bg-fiap-grey{
 	background-color: #1F1F1F;
 }
