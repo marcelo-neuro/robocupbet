@@ -12,7 +12,7 @@ public class ConnectionFactory {
 		 try {
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
 			 return DriverManager.getConnection(ORACLE_URL, ORACLE_USER, ORACLE_PASSWORD);
-		 } catch(SQLException e) {
+		 } catch(SQLException e) { 	
 			 e.printStackTrace();
 		 } catch (ClassNotFoundException e) {
 			e.printStackTrace();

@@ -27,7 +27,7 @@
 					</div>
 					<div class="mt-3">
 						<button type="submit"
-							class="btn btn-style w-100 text-light fw-bold mt-3">Submit</button>
+							class="btn btn-style w-100 text-light fw-bold mt-3">Entrar</button>
 					</div>
 				</div>
 			</form>
