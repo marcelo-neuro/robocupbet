@@ -1,11 +1,49 @@
 @charset "UTF-8";
 
-.bg-robocup{
-	background-image: url("assets/imagens/robocup.jpg");
-	width: 100%;	
-	height: 100%;
+html, body{
+	height:100%;
+	margin: 0;
+	padding:0;
 }
 
+.bg-robocup{
+	background-image: url("https://www.fiap.com.br/wp-content/themes/fiap2016/images/next/finals/fotos/robocup.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    width: 100vw; 
+    height: 100vh; 
+}
+
+.bg-fiap-grey{
+	background-color: #1F1F1F;
+}
+
+.position-loja {
+    position: absolute;
+    top: 9%;
+    right: 5%;
+}
+
+.img-loja{
+	width:150px;
+	height:150px;
+	object-fit:contain;
+}
+
+.link-conta{
+	text-decoration:none;
+}
+
+.title-cup{
+	color: #ED145B;
+}
+
+.fiap-border{
+	border-width: 0.5px;
+	border-style: solid;
+	border-color: #ED145B;
+}
 
 .form-usuario{
   	border-width: 3px;
