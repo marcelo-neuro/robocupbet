@@ -40,7 +40,6 @@ public class ConnectionPool {
 				e.printStackTrace();
 			}
 		}
-
 		return connection;
 	}
 }
