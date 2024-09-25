@@ -144,15 +144,27 @@ public class UsuarioDAO {
 	}
 	
 	public boolean validate(String email, String senha) {
-		List<Usuario> us = findAll();
-		for(Usuario u: us) {
-			System.out.println(u.getEmail());
-			System.out.println(u.getSenha());
-			if(u.getEmail().equals(email) && u.getSenha().equals(senha)) {
-				
-				return true;
+		boolean res = false;
+		String sql = """
+				SELECT * FROM usuarios
+				WHERE usuarios.email_usuario = ? AND usuarios.senha_usuario = ?
+				""";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, email);
+			ps.setString(2, senha);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				res = true;
+				ps.close();
+				rs.close();
+				return res;
 			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
-		return true;
+		return res;
 	}
 }

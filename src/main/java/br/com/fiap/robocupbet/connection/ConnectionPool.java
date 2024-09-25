@@ -7,10 +7,10 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 public class ConnectionPool {
-	private static final String ORACLE_URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL", 
-			ORACLE_USER = "rm551285",
+	private static final String ORACLE_URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL", ORACLE_USER = "rm551285",
 			ORACLE_PASSWORD = "130805";
 	private static HikariDataSource ds;
+	private static Connection connection;
 
 	static {
 		try {
@@ -20,7 +20,7 @@ public class ConnectionPool {
 			config.setUsername(ORACLE_USER);
 			config.setPassword(ORACLE_PASSWORD);
 
-			config.setMaximumPoolSize(10);
+			config.setMaximumPoolSize(20);
 			config.setMinimumIdle(5);
 			config.setIdleTimeout(60000);
 			config.setConnectionTimeout(30000);
@@ -33,11 +33,14 @@ public class ConnectionPool {
 	}
 
 	public static Connection getConnection() {
-		try {
-			return ds.getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (connection == null) {
+			try {
+				connection = ds.getConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
+
+		return connection;
 	}
 }

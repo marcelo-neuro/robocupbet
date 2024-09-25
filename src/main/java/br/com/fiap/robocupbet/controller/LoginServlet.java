@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usuarioEmail = request.getParameter("usuarioEmail");
 		String usuarioSenha = request.getParameter("usuarioSenha");
-		
+	
 		if(appController.validaUsuario(usuarioEmail, Encode.sha256(usuarioSenha))) {
 			Usuario u = appController.listarUsuariosPorEmail(usuarioEmail);
 			request.setAttribute("usuario", u);
