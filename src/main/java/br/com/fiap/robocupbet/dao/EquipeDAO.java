@@ -40,6 +40,7 @@ public class EquipeDAO {
 			stmt.setInt(2, equipe.getIdPartida());
 			stmt.setInt(3, equipe.getIdRobo());
 			stmt.setString(4, equipe.getNome());
+			stmt.setInt(5, equipe.getId());
 			stmt.execute();
 			stmt.close();
 			
@@ -71,10 +72,10 @@ public class EquipeDAO {
 			
 			while (rs.next()) {
 				Equipe equipe = new Equipe();
-				equipe.setId(rs.getInt(1));
-				equipe.setIdPartida(rs.getInt(2));
-				equipe.setIdRobo(rs.getInt(3));
-				equipe.setNome(rs.getString(4));
+				equipe.setId(rs.getInt("id_equipe"));
+				equipe.setIdPartida(rs.getInt("id_partida"));
+				equipe.setIdRobo(rs.getInt("id_robo"));
+				equipe.setNome(rs.getString("nome_equipe"));
 				equipes.add(equipe);
 			}
 			
@@ -96,10 +97,10 @@ public class EquipeDAO {
 			Equipe equipe = new Equipe();
 			
 			while (rs.next()) {
-				equipe.setId(rs.getInt(1));
-				equipe.setIdPartida(rs.getInt(2));
-				equipe.setIdRobo(rs.getInt(3));
-				equipe.setNome(rs.getString(4));
+				equipe.setId(rs.getInt("id_equipe"));
+				equipe.setIdPartida(rs.getInt("id_partida"));
+				equipe.setIdRobo(rs.getInt("id_robo"));
+				equipe.setNome(rs.getString("nome_equipe"));
 			}
 			
 			stmt.execute();
@@ -126,10 +127,10 @@ public class EquipeDAO {
 			
 			while(rs.next()) {
 				Equipe equipe = new Equipe();
-				equipe.setId(rs.getInt(1));
-				equipe.setIdPartida(rs.getInt(2));
-				equipe.setIdRobo(rs.getInt(3));
-				equipe.setNome(rs.getString(4));
+				equipe.setId(rs.getInt("id_equipe"));
+				equipe.setIdPartida(rs.getInt("id_partida"));
+				equipe.setIdRobo(rs.getInt("id_robo"));
+				equipe.setNome(rs.getString("nome_equipe"));
 				es.add(equipe);
 			}
 			return es;

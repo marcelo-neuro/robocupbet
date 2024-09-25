@@ -79,13 +79,13 @@ public class RoboDAO {
 			
 			while (rs.next()) {
 				Robo robo = new Robo();
-				robo.setId(rs.getInt(1));
-				robo.setNome(rs.getString(2));
-				robo.setPeso(rs.getDouble(3));
-				robo.setAltura(rs.getDouble(4));
-				robo.setLargura(rs.getDouble(5));
-				robo.setComprimento(rs.getDouble(6));
-				robo.setUrlFoto(rs.getString(7));
+				robo.setId(rs.getInt("id_robo"));
+				robo.setNome(rs.getString("nome_robo"));
+				robo.setPeso(rs.getDouble("peso_robo"));
+				robo.setAltura(rs.getDouble("altura_robo"));
+				robo.setLargura(rs.getDouble("largura_robo"));
+				robo.setComprimento(rs.getDouble("comprimento_robo"));
+				robo.setUrlFoto(rs.getString("url_foto_robo"));
 				robos.add(robo);
 			}
 			
@@ -107,13 +107,13 @@ public class RoboDAO {
 			Robo robo = new Robo();
 			
 			while (rs.next()) {
-				robo.setId(rs.getInt(1));
-				robo.setNome(rs.getString(2));
-				robo.setPeso(rs.getDouble(3));
-				robo.setAltura(rs.getDouble(4));
-				robo.setLargura(rs.getDouble(5));
-				robo.setComprimento(rs.getDouble(6));
-				robo.setUrlFoto(rs.getString(7));
+				robo.setId(rs.getInt("id_robo"));
+				robo.setNome(rs.getString("nome_robo"));
+				robo.setPeso(rs.getDouble("peso_robo"));
+				robo.setAltura(rs.getDouble("altura_robo"));
+				robo.setLargura(rs.getDouble("largura_robo"));
+				robo.setComprimento(rs.getDouble("comprimento_robo"));
+				robo.setUrlFoto(rs.getString("url_foto_robo"));
 			}
 			
 			stmt.execute();
