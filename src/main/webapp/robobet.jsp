@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +10,9 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="bg-black">
-	<main
-		class="container d-flex flex-column justify-content-center align-items-center">
+	<main class="container d-flex flex-column justify-content-center align-items-center">
 
+		
 		<h1 class="text-light mt-4">
 			<span class="title-cup">ROBOCUP</span> BET
 		</h1>

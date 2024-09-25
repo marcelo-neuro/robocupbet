@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.fiap.robocupbet.connection.ConnectionPool;
+import br.com.fiap.robocupbet.dao.RoboDAO;
+import br.com.fiap.robocupbet.dao.UsuarioDAO;
 import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
 
@@ -15,7 +18,8 @@ import br.com.fiap.robocupbet.util.Encode;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private AppController appController = AppController.getInstance();
+	private UsuarioDAO ud = new UsuarioDAO(ConnectionPool.getConnection());
+	private RoboDAO rd = new RoboDAO(ConnectionPool.getConnection());
 	
     
     public LoginServlet() {
@@ -27,9 +31,10 @@ public class LoginServlet extends HttpServlet {
 		String usuarioEmail = request.getParameter("usuarioEmail");
 		String usuarioSenha = request.getParameter("usuarioSenha");
 	
-		if(appController.validaUsuario(usuarioEmail, Encode.sha256(usuarioSenha))) {
-			Usuario u = appController.listarUsuariosPorEmail(usuarioEmail);
+		if(ud.validate(usuarioEmail, Encode.sha256(usuarioSenha))) {
+			Usuario u = ud.findByEmail(usuarioEmail);
 			request.setAttribute("usuario", u);
+			request.setAttribute("robos", rd.findAll());
 			request.getRequestDispatcher("/robobet.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
