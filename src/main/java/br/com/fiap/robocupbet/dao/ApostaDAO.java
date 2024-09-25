@@ -27,7 +27,6 @@ public class ApostaDAO {
 			stmt.setBoolean(3, aposta.isVencida());
 			stmt.execute();
 			stmt.close();
-			con.close();
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -42,10 +41,9 @@ public class ApostaDAO {
 			stmt.setInt(2, aposta.getValor());
 			stmt.setBoolean(3, aposta.isAtiva());
 			stmt.setBoolean(4, aposta.isVencida());
-			stmt.setInt(1, aposta.getId());
+			stmt.setInt(5, aposta.getId());
 			stmt.execute();
 			stmt.close();
-			con.close();
 		} catch (SQLException e){
 			throw new RuntimeException (e);
 		}
@@ -59,7 +57,6 @@ public class ApostaDAO {
 			stmt.setInt(1, id);
 			stmt.execute();
 			stmt.close();
-			con.close();
 		} catch (SQLException e) {
 			throw new RuntimeException (e);
 		}
@@ -74,18 +71,17 @@ public class ApostaDAO {
 			
 			while (rs.next()) {
 				Aposta aposta = new Aposta();
-				aposta.setId(rs.getInt(1));
-				aposta.setIdUsuario(rs.getInt(2));
-				aposta.setIdPartida(rs.getInt(3));
-				aposta.setValor(rs.getInt(4));
-				aposta.setAtiva(rs.getBoolean(5));
-				aposta.setVencida(rs.getBoolean(6));
+				aposta.setId(rs.getInt("id_aposta"));
+				aposta.setIdUsuario(rs.getInt("id_usuario"));
+				aposta.setIdPartida(rs.getInt("id_partida"));
+				aposta.setValor(rs.getInt("valor_aposta"));
+				aposta.setAtiva(rs.getBoolean("aposta_ativa"));
+				aposta.setVencida(rs.getBoolean("venceu_aposta"));
 				apostas.add(aposta);
 			}
 			
 			rs.close();
 			stmt.close();
-			con.close();
 			return apostas;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -101,12 +97,12 @@ public class ApostaDAO {
 			Aposta aposta = new Aposta();
 			
 			while (rs.next()) {
-				aposta.setId(rs.getInt(1));
-				aposta.setIdUsuario(rs.getInt(2));
-				aposta.setIdPartida(rs.getInt(3));
-				aposta.setValor(rs.getInt(4));
-				aposta.setAtiva(rs.getBoolean(5));
-				aposta.setVencida(rs.getBoolean(6));
+				aposta.setId(rs.getInt("id_aposta"));
+				aposta.setIdUsuario(rs.getInt("id_usuario"));
+				aposta.setIdPartida(rs.getInt("id_partida"));
+				aposta.setValor(rs.getInt("valor_aposta"));
+				aposta.setAtiva(rs.getBoolean("aposta_ativa"));
+				aposta.setVencida(rs.getBoolean("venceu_aposta"));
 			}
 			
 			stmt.execute();

@@ -77,12 +77,12 @@ public class PremioDAO {
 			
 			while (rs.next()) {
 				Premio premio = new Premio();
-				premio.setId(rs.getInt(1));
-				premio.setNome(rs.getString(2));
-				premio.setDesc(rs.getString(3));
-				premio.setValor(rs.getInt(4));
-				premio.setQuantidade(rs.getInt(5));
-				premio.setUrlFoto(rs.getNString(6));
+				premio.setId(rs.getInt("id_premio"));
+				premio.setNome(rs.getString("nome_premio"));
+				premio.setDesc(rs.getString("desc_premio"));
+				premio.setValor(rs.getInt("valor_premio"));
+				premio.setQuantidade(rs.getInt("quantidade_premio"));
+				premio.setUrlFoto(rs.getNString("url_foto_premio"));
 				premios.add(premio);
 			}
 			
@@ -104,12 +104,12 @@ public class PremioDAO {
 			Premio premio = new Premio();
 			
 			while (rs.next()) {
-				premio.setId(rs.getInt(1));
-				premio.setNome(rs.getString(2));
-				premio.setDesc(rs.getString(3));
-				premio.setValor(rs.getInt(4));
-				premio.setQuantidade(rs.getInt(5));
-				premio.setUrlFoto(rs.getNString(6));
+				premio.setId(rs.getInt("id_premio"));
+				premio.setNome(rs.getString("nome_premio"));
+				premio.setDesc(rs.getString("desc_premio"));
+				premio.setValor(rs.getInt("valor_premio"));
+				premio.setQuantidade(rs.getInt("quantidade_premio"));
+				premio.setUrlFoto(rs.getNString("url_foto_premio"));
 			}
 			
 			stmt.execute();
