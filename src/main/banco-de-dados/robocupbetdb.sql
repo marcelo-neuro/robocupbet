@@ -54,7 +54,6 @@ DROP TABLE equipes;
 
 CREATE TABLE equipes(
     id_equipe NUMBER(10) CONSTRAINT equipe_id_pk PRIMARY KEY,
-    id_partida NUMBER(10),
     id_robo NUMBER(10) NOT NULL UNIQUE,
     nome_equipe VARCHAR(50) CONSTRAINT equipe_nome_uk UNIQUE NOT NULL
 );
@@ -114,22 +113,12 @@ DROP TABLE partidas;
 CREATE TABLE partidas(
     id_partida NUMBER(10) CONSTRAINT partida_id_pk PRIMARY KEY,
     id_equipe_vencedora NUMBER(10),
-    inicio_partida DATE NOT NULL,
-    partida_finalizada NUMBER(1) CONSTRAINT partida_finalizada_bool CHECK(partida_finalizada IN(0,1)) NOT NULL
 );
-
-ALTER TABLE partidas
-MODIFY(partida_finalizada DEFAULT(0));
 
 ALTER TABLE partidas
 ADD CONSTRAINT partida_id_equipe_vencedora_fk
 FOREIGN KEY(id_equipe_vencedora)
 REFERENCES equipes(id_equipe);
-
-ALTER TABLE equipes
-ADD CONSTRAINT equipe_id_partida_fk
-FOREIGN KEY(id_partida)
-REFERENCES partidas(id_partida);
 
 DROP SEQUENCE partidas_sequence;
 DROP TRIGGER tr_insert_id_partida;
@@ -142,6 +131,39 @@ BEFORE INSERT ON partidas FOR EACH ROW
 BEGIN
 SELECT partidas_sequence.NEXTVAL
 INTO :NEW.id_partida
+FROM DUAL;
+END;
+
+
+DROP TABLE itens_partidas;
+
+CREATE TABLE itens_partidas(
+    id_item_partida NUMBER(10) CONSTRAINT item_partida_pk PRIMARY KEY,
+    id_equipe NUMBER(10) NOT NULL,
+    id_partida NUMBER(10) NOT NULL
+);
+
+ALTER TABLE itens_partidas
+ADD CONSTRAINT item_partida_id_equipe_fk
+FOREIGN KEY(id_equipe)
+REFERENCES equipes(id_equipe);
+
+ALTER TABLE itens_partidas
+ADD CONSTRAINT item_partida_id_partida_fk
+FOREIGN KEY(id_partida)
+REFERENCES partidas(id_partida);
+
+DROP SEQUENCE itens_partidas_sequence;
+DROP TRIGGER tr_insert_id_item_partida;
+
+CREATE SEQUENCE itens_partidas_sequence
+START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER tr_insert_id_item_partida
+BEFORE INSERT ON itens_partidas FOR EACH ROW
+BEGIN
+SELECT itens_partidas_sequence.NEXTVAL
+INTO :NEW.id_item_partida
 FROM DUAL;
 END;
 

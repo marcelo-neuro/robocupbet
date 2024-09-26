@@ -18,11 +18,12 @@ public class EquipeDAO {
 	}
 	
 	public void insert(Equipe equipe) {
-		String sql = "INSERT INTO equipes (nome_equipe) values (?)";
+		String sql = "INSERT INTO equipes (nome_equipe, id_robo) values (?, ?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, equipe.getNome());
+			stmt.setInt(2, equipe.getIdRobo());
 			stmt.execute();
 			stmt.close();
 			
@@ -32,14 +33,14 @@ public class EquipeDAO {
 	}
 	
 	public void update(Equipe equipe) {
-		String sql = "UPDATE equipes SET id_equipe = ?, id_partida = ?, id_robo = ?, nome_equipe = ? WHERE id_equipe = ?";
+		String sql = "UPDATE equipes SET id_equipe = ?, id_robo = ?, nome_equipe = ? WHERE id_equipe = ?";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, equipe.getId());
-			stmt.setInt(2, equipe.getIdPartida());
-			stmt.setInt(3, equipe.getIdRobo());
-			stmt.setString(4, equipe.getNome());
+			stmt.setInt(2, equipe.getIdRobo());
+			stmt.setString(3, equipe.getNome());
+			stmt.setInt(4, equipe.getId());
 			stmt.execute();
 			stmt.close();
 			
@@ -71,10 +72,9 @@ public class EquipeDAO {
 			
 			while (rs.next()) {
 				Equipe equipe = new Equipe();
-				equipe.setId(rs.getInt(1));
-				equipe.setIdPartida(rs.getInt(2));
-				equipe.setIdRobo(rs.getInt(3));
-				equipe.setNome(rs.getString(4));
+				equipe.setId(rs.getInt("id_equipe"));
+				equipe.setIdRobo(rs.getInt("id_robo"));
+				equipe.setNome(rs.getString("nome_equipe"));
 				equipes.add(equipe);
 			}
 			
@@ -96,10 +96,9 @@ public class EquipeDAO {
 			Equipe equipe = new Equipe();
 			
 			while (rs.next()) {
-				equipe.setId(rs.getInt(1));
-				equipe.setIdPartida(rs.getInt(2));
-				equipe.setIdRobo(rs.getInt(3));
-				equipe.setNome(rs.getString(4));
+				equipe.setId(rs.getInt("id_equipe"));
+				equipe.setIdRobo(rs.getInt("id_robo"));
+				equipe.setNome(rs.getString("nome_equipe"));
 			}
 			
 			stmt.execute();
@@ -126,10 +125,9 @@ public class EquipeDAO {
 			
 			while(rs.next()) {
 				Equipe equipe = new Equipe();
-				equipe.setId(rs.getInt(1));
-				equipe.setIdPartida(rs.getInt(2));
-				equipe.setIdRobo(rs.getInt(3));
-				equipe.setNome(rs.getString(4));
+				equipe.setId(rs.getInt("id_equipe"));
+				equipe.setIdRobo(rs.getInt("id_robo"));
+				equipe.setNome(rs.getString("nome_equipe"));
 				es.add(equipe);
 			}
 			return es;

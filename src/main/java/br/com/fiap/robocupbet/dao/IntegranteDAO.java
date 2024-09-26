@@ -75,11 +75,11 @@ public class IntegranteDAO {
 			
 			while (rs.next()) {
 				Integrante integrante = new Integrante();
-				integrante.setId(rs.getInt(1));
-				integrante.setIdEquipe(rs.getInt(2));
-				integrante.setNome(rs.getString(3));
-				integrante.setRm(rs.getString(4));
-				integrante.setUrlFoto(rs.getString(5));
+				integrante.setId(rs.getInt("id_integrantes"));
+				integrante.setIdEquipe(rs.getInt("id_equipe"));
+				integrante.setNome(rs.getString("nome_integrante"));
+				integrante.setRm(rs.getString("rm_integrante"));
+				integrante.setUrlFoto(rs.getString("url_foto_integrante"));
 				integrantes.add(integrante);
 			}
 			
@@ -101,11 +101,11 @@ public class IntegranteDAO {
 			Integrante integrante = new Integrante();
 			
 			while (rs.next()) {
-				integrante.setId(rs.getInt(1));
-				integrante.setIdEquipe(rs.getInt(2));
-				integrante.setNome(rs.getString(3));
-				integrante.setRm(rs.getString(4));
-				integrante.setUrlFoto(rs.getString(5));
+				integrante.setId(rs.getInt("id_integrantes"));
+				integrante.setIdEquipe(rs.getInt("id_equipe"));
+				integrante.setNome(rs.getString("nome_integrante"));
+				integrante.setRm(rs.getString("rm_integrante"));
+				integrante.setUrlFoto(rs.getString("url_foto_integrante"));
 			}
 			
 			stmt.execute();
