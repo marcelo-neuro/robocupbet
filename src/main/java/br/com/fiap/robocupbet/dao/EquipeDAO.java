@@ -18,11 +18,12 @@ public class EquipeDAO {
 	}
 	
 	public void insert(Equipe equipe) {
-		String sql = "INSERT INTO equipes (nome_equipe) values (?)";
+		String sql = "INSERT INTO equipes (nome_equipe, id_robo) values (?, ?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, equipe.getNome());
+			stmt.setInt(2, equipe.getIdRobo());
 			stmt.execute();
 			stmt.close();
 			
@@ -32,15 +33,14 @@ public class EquipeDAO {
 	}
 	
 	public void update(Equipe equipe) {
-		String sql = "UPDATE equipes SET id_equipe = ?, id_partida = ?, id_robo = ?, nome_equipe = ? WHERE id_equipe = ?";
+		String sql = "UPDATE equipes SET id_equipe = ?, id_robo = ?, nome_equipe = ? WHERE id_equipe = ?";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, equipe.getId());
-			stmt.setInt(2, equipe.getIdPartida());
-			stmt.setInt(3, equipe.getIdRobo());
-			stmt.setString(4, equipe.getNome());
-			stmt.setInt(5, equipe.getId());
+			stmt.setInt(2, equipe.getIdRobo());
+			stmt.setString(3, equipe.getNome());
+			stmt.setInt(4, equipe.getId());
 			stmt.execute();
 			stmt.close();
 			
@@ -73,7 +73,6 @@ public class EquipeDAO {
 			while (rs.next()) {
 				Equipe equipe = new Equipe();
 				equipe.setId(rs.getInt("id_equipe"));
-				equipe.setIdPartida(rs.getInt("id_partida"));
 				equipe.setIdRobo(rs.getInt("id_robo"));
 				equipe.setNome(rs.getString("nome_equipe"));
 				equipes.add(equipe);
@@ -98,7 +97,6 @@ public class EquipeDAO {
 			
 			while (rs.next()) {
 				equipe.setId(rs.getInt("id_equipe"));
-				equipe.setIdPartida(rs.getInt("id_partida"));
 				equipe.setIdRobo(rs.getInt("id_robo"));
 				equipe.setNome(rs.getString("nome_equipe"));
 			}
@@ -128,7 +126,6 @@ public class EquipeDAO {
 			while(rs.next()) {
 				Equipe equipe = new Equipe();
 				equipe.setId(rs.getInt("id_equipe"));
-				equipe.setIdPartida(rs.getInt("id_partida"));
 				equipe.setIdRobo(rs.getInt("id_robo"));
 				equipe.setNome(rs.getString("nome_equipe"));
 				es.add(equipe);
