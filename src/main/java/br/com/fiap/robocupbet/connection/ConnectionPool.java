@@ -7,8 +7,8 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 public class ConnectionPool {
-	private static final String ORACLE_URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL", ORACLE_USER = "rm551285",
-			ORACLE_PASSWORD = "130805";
+	private static final String ORACLE_URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL", ORACLE_USER = "",
+			ORACLE_PASSWORD = "";
 	private static HikariDataSource ds;
 	private static Connection connection;
 
@@ -26,7 +26,6 @@ public class ConnectionPool {
 			config.setConnectionTimeout(30000);
 			ds = new HikariDataSource(config);
 		} catch (ClassNotFoundException e) {
-
 			e.printStackTrace();
 		}
 

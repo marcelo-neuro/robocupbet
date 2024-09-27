@@ -4,6 +4,7 @@ public class Equipe {
 	private int id;
 	private int idPartida;
 	private int idRobo;
+	private Robo robo;
 	private String nome;
 	
 	public Equipe(int idRobo, String nome) {
@@ -44,6 +45,15 @@ public class Equipe {
 	public void setIdPartida(int idPartida) {
 		this.idPartida = idPartida;
 	}
+
+	public Robo getRobo() {
+		return robo;
+	}
+
+	public void setRobo(Robo robo) {
+		this.robo = robo;
+	}
+
 	
 	
 }

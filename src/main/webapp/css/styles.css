@@ -31,9 +31,9 @@ html, body{
 }
 
 .img-loja{
-	width:150px;
-	height:150px;
-	object-fit:contain;
+	width:200px;
+	height:200px;
+	object-fit:fill;
 }
 
 .link-conta{

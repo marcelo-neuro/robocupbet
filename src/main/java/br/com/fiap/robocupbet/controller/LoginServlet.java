@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 			Usuario u = ud.findByEmail(usuarioEmail);
 			request.setAttribute("usuario", u);
 			request.setAttribute("robos", rd.findAll());
-			request.getRequestDispatcher("/robobet.jsp").forward(request, response);
+			request.getRequestDispatcher("PartidaServlet").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}

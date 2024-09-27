@@ -148,6 +148,10 @@ public class AppController {
 	//public List<Partida> listarPartidas() throws SQLException {
 	//	return partidaDAO.findAll();
 	//}
+	
+	public List<Partida> listarPartidas1() throws SQLException {
+		return equipeDAO.findPartida();
+	}
 
 	// metodos dos Integrantes
 	public void adicionarIntegrante(Integrante integrante) throws SQLException {
@@ -168,6 +172,10 @@ public class AppController {
 
 	public List<Integrante> listarIntegrantes() throws SQLException {
 		return integranteDAO.findAll();
+	}
+	
+	public List<Integrante> listarIntegrantesPorEquipe(int id) throws SQLException {
+		return integranteDAO.findByEquipe(id);
 	}
 
 	// metodos das equipes
