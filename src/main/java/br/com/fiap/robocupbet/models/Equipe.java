@@ -2,7 +2,6 @@ package br.com.fiap.robocupbet.models;
 
 public class Equipe {
 	private int id;
-	private int idPartida;
 	private int idRobo;
 	private Robo robo;
 	private String nome;
@@ -37,6 +36,7 @@ public class Equipe {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+<<<<<<< HEAD
 
 	public int getIdPartida() {
 		return idPartida;
@@ -54,6 +54,8 @@ public class Equipe {
 		this.robo = robo;
 	}
 
+=======
+>>>>>>> 94b540c56dd98b8211a8c18bddd1daa85df30d52
 	
 	
 }
