@@ -141,32 +141,33 @@ public class EquipeDAO {
 	
 	public List<Partida> findPartida(){		
 		List<Partida> partidas = new ArrayList<Partida>();
-		String sql = "SELECT \r\n"
-				+ "    PARTIDAS.id_partida,\r\n"
-				+ "    eqA.nome_equipe AS equipeA,\r\n"
-				+ "    eqA.id_equipe as id_equipeA,\r\n"
-				+ "    rbA.nome_robo AS roboA,\r\n"
-				+ "    rbA.id_robo AS id_roboA,\r\n"
-				+ "    rbA.url_foto_robo AS roboA_img,\r\n"
-				+ "    eqB.id_equipe as id_equipeB,\r\n"
-				+ "    eqB.nome_equipe AS equipeB,\r\n"
-				+ "    rbB.id_robo AS id_roboB,\r\n"
-				+ "    rbB.nome_robo AS roboB,\r\n"
-				+ "    rbB.url_foto_robo AS roboB_img\r\n"
-				+ "	FROM PARTIDAS\r\n"
-				+ "    INNER JOIN\r\n"
-				+ "	ITENS_PARTIDAS ipA ON PARTIDAS.id_partida = ipA.id_partida\r\n"
-				+ "	INNER JOIN \r\n"
-				+ "	EQUIPES eqA ON ipA.id_equipe = eqA.id_equipe\r\n"
-				+ "	INNER JOIN \r\n"
-				+ "	ROBOS rbA ON eqA.id_robo = rbA.id_robo\r\n"
-				+ "	INNER JOIN \r\n"
-				+ "	ITENS_PARTIDAS ipB ON PARTIDAS.id_partida = ipB.id_partida\r\n"
-				+ "	INNER JOIN \r\n"
-				+ "	EQUIPES eqB ON ipB.id_equipe = eqB.id_equipe\r\n"
-				+ "	INNER JOIN \r\n"
-				+ "	ROBOS rbB ON eqB.id_robo = rbB.id_robo\r\n"
-				+ "	WHERE rbA.id_robo < rbB.id_robo";
+		String sql = """
+					SELECT
+				   PARTIDAS.id_partida,
+				   eqA.nome_equipe AS equipeA,
+				   eqA.id_equipe as id_equipeA,
+				   rbA.nome_robo AS roboA,
+				   rbA.id_robo AS id_roboA,
+				   rbA.url_foto_robo AS roboA_img,
+				   eqB.id_equipe as id_equipeB,
+				   eqB.nome_equipe AS equipeB,
+				   rbB.id_robo AS id_roboB,
+					rbB.nome_robo AS roboB,
+				   rbB.url_foto_robo AS roboB_img
+				FROM PARTIDAS
+				   INNER JOIN
+				ITENS_PARTIDAS ipA ON PARTIDAS.id_partida = ipA.id_partida
+				INNER JOIN 
+				EQUIPES eqA ON ipA.id_equipe = eqA.id_equipe
+				INNER JOIN 
+				ROBOS rbA ON eqA.id_robo = rbA.id_robo
+				INNER JOIN 
+				ITENS_PARTIDAS ipB ON PARTIDAS.id_partida = ipB.id_partida
+				INNER JOIN 
+				EQUIPES eqB ON ipB.id_equipe = eqB.id_equipe
+				INNER JOIN 
+				ROBOS rbB ON eqB.id_robo = rbB.id_robo
+				WHERE rbA.id_robo < rbB.id_robo""";
 					
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,8 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="bg-black">
-	<main class="container d-flex flex-column justify-content-center align-items-center">
+	<main
+		class="container d-flex flex-column justify-content-center align-items-center">
 
 		<h1 class="text-light mt-4">
 			<span class="title-cup">ROBOCUP</span> BET
@@ -24,75 +25,59 @@
 		</div>
 
 		<c:forEach var="partida" items="${partidas}">
-			<div class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey">
-				<div class="d-flex flex-row justify-content-center align-items-center w-100">
+			<div
+				class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey" id-partida="${partida.id}">
+				<div
+					class="d-flex flex-row justify-content-center align-items-center w-100">
 					<div class="d-flex align-items-center flex-column w-50">
 						<h3 class="text-center text-light fs-3">${partida.equipeA.robo.nome}</h3>
-						<img src="${partida.equipeA.robo.urlFoto}" class="img-robos img-fluid rounded">
-						<input type="text" class="form-control w-50 mt-4 mb-4" placeholder="$00.00">
-						<a class="btn w-75 text-light fw-bold mb-2"
-							 href=<c:url value="IntegrantesServlet">
+						<img src="${partida.equipeA.robo.urlFoto}"
+							class="img-robos img-fluid rounded">
+							
+							 <input type="text"
+							class="form-control w-50 mt-4 mb-4" placeholder="$00.00"
+							name="apostaRoboA" id="apostaRoboA-${partida.id}">
+							
+							 <a
+							class="btn w-75 text-light fw-bold mb-2"
+							href=<c:url value="IntegrantesServlet">
 						 		<c:param name="equipeId" value="${partida.equipeA.id}"/>						 	
-						  </c:url> >Ver equipe
-						</a>
+						  </c:url>>Ver
+							equipe </a>
 					</div>
 					<div class="d-flex align-items-center justify-content-center">
 						<h4 class="text-center text-light fs-1">VS</h4>
 					</div>
 					<div class="d-flex align-items-center flex-column w-50">
 						<h3 class="text-center text-light fs-3">${partida.equipeB.robo.nome}</h3>
-						<img src="${partida.equipeB.robo.urlFoto}" class="img-robos img-fluid rounded">
-						<input type="text" class="form-control w-50 mt-4 mb-4" placeholder="$00.00">
-						<a class="btn w-75 text-light fw-bold mb-2"
-						 href=<c:url value="IntegrantesServlet">
+						<img src="${partida.equipeB.robo.urlFoto}"
+							class="img-robos img-fluid rounded"> 
+							
+							<input type="text"
+							class="form-control w-50 mt-4 mb-4" placeholder="$00.00"
+							name="apostaRoboB" id="apostaRoboB-${partida.id}">
+							
+							 <a
+							class="btn w-75 text-light fw-bold mb-2"
+							href=<c:url value="IntegrantesServlet">
 						 	<c:param name="equipeId" value="${partida.equipeB.id}"/>						 	
-						  </c:url> >Ver equipe
-						 </a>
+						  </c:url>>Ver
+							equipe </a>
 					</div>
 				</div>
-				<div>
-					<button class="button-aposta">Confirmar aposta</button>
-				</div>
+				<a
+					class="button-aposta d-flex align-items-center justify-content-center text-decoration-none"
+					href=
+					<c:url value="IntegrantesServlet">
+				         	<c:param name='valorAposta' value='${partida.equipeA.id}'/>
+						  </c:url>>Confirmar
+					aposta</a>
 			</div>
 		</c:forEach>
-		
-
-
-		<div
-			class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey">
-			<div
-				class="d-flex flex-row justify-content-center align-items-center w-100">
-				<div class="d-flex align-items-center flex-column w-50">
-					<h3 class="text-center text-light fs-3">Robô Scooby</h3>
-					<img src="assets/imagens/scooby.png"
-						class="img-robos img-fluid rounded"><input type="text"
-						class="form-control w-50 mt-4 mb-4" id="exampleInputNome1"
-						placeholder="$00.00"> <a
-						class="btn w-75 text-light fw-bold mb-2"
-						href="http://localhost:8080/robocupbet/integrantes.jsp"> Ver
-						Equipe </a>
-				</div>
-				<div class="d-flex align-items-center justify-content-center">
-					<h4 class="text-center text-light fs-1">VS</h4>
-				</div>
-
-				<div class="d-flex flex-column align-items-center w-50">
-					<h3 class="text-center text-light fs-3">Robô Nintendo</h3>
-					<img src="assets/imagens/nintendinho.png"
-						class="img-robos img-fluid rounded"> <input type="text"
-						class="form-control w-50 mt-4 mb-4" id="exampleInputNome1"
-						placeholder="$00.00"> <a
-						class="btn w-75 text-light fw-bold mb-2"
-						href="http://localhost:8080/robocupbet/integrantes.jsp"> Ver
-						Equipe </a>
-				</div>
-			</div>
-
-			<div>
-				<button class="button-aposta">Confirmar aposta</button>
-			</div>
-		</div>
 
 	</main>
+	
+	<script src="scripts/aposta.js"></script>
+
 </body>
 </html>
