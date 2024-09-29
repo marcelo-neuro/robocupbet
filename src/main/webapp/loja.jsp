@@ -17,7 +17,7 @@
 		<div
 			class="position-loja form-usuario mt-4 me-5 d-flex flex-column align-items-center">
 			<p class="px-5 text-center text-light mt-2">FIAPoints: 1000</p>
-			<a href="http://localhost:8080/robocupbet/robobet.jsp"
+			<a href="/robocupbet/robobet.jsp"
 				class="btn btn-style w-75 text-light fw-bold m-2"> RoboBet </a>
 		</div>
 

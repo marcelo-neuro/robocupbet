@@ -33,8 +33,8 @@
 					<h3 class="title-cup">Nome dele</h3>
 				</div>
 			</div>
-
-			<a href="http://localhost:8080/robocupbet/robobet.jsp"
+			
+			<a href="/robocupbet/index"
 				class="btn btn-style w-75 text-light fw-bold mt-5"> Voltar </a>
 
 		</div>
