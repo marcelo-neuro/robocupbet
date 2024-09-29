@@ -32,8 +32,8 @@ public class ApostaServlet extends HttpServlet {
 		
 	    partida.setId(Integer.valueOf(request.getParameter("partidaId")));
 	    
-	    String betOnAParam = request.getParameter("betOnA");
-	    String betOnBParam = request.getParameter("betOnB");
+	    String betOnAParam = request.getParameter("apostaNoA");
+	    String betOnBParam = request.getParameter("apostaNoB");
 	    	
 	    int inputOnA = betOnAParam == null ? 0 : Integer.valueOf(request.getParameter("betOnA"));
 	    int inputOnB = betOnBParam == null ? 0 : Integer.valueOf(request.getParameter("betOnB"));

@@ -35,7 +35,7 @@
 								class="img-robos img-fluid rounded">
 
 							<input type="number" class="form-control w-50 mt-4 mb-4"
-								placeholder="$00.00" name="betOnA"
+								placeholder="$00.00" name="apostaNoA"
 								id="apostaRoboA-${partida.id}"> <a
 								class="btn w-75 text-light fw-bold mb-2"
 								href="<c:url value='IntegrantesServlet'>
@@ -53,7 +53,7 @@
 							<img src="${partida.equipeB.robo.urlFoto}"
 								class="img-robos img-fluid rounded"> <input type="number"
 								class="form-control w-50 mt-4 mb-4" placeholder="$00.00"
-								name="betOnB" id="apostaRoboB-${partida.id}"> <a
+								name="apostaNoB" id="apostaRoboB-${partida.id}"> <a
 								class="btn w-75 text-light fw-bold mb-2"
 								href="<c:url value='IntegrantesServlet'>
                     <c:param name='equipeId' value='${partida.equipeB.id}'/>
