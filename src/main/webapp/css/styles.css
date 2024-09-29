@@ -1,9 +1,12 @@
 @charset "UTF-8";
 
 html, body{
+	width:100%;
 	height:100%;
-	margin: 1;
+	margin: 0;
 	padding:0;
+  	overflow-x: hidden; 
+
 }
 
 .bg-robocup{
@@ -72,6 +75,8 @@ html, body{
 	color:#FFF;
 	font-size:18px;
 	border-radius:10px;
+	border: 2px solid;
+	border-color: #ED145B;
 }
 
 .container-fluid {
@@ -105,12 +110,10 @@ html, body{
 
 .header-page {
     width: 100%;
-    height: 100px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
-    position: absolute;
     color: transparent;
 }
 
