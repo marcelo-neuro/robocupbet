@@ -27,7 +27,6 @@ public class ConnectionPool {
 			config.setConnectionTimeout(30000);
 			ds = new HikariDataSource(config);
 		} catch (ClassNotFoundException e) {
-
 			e.printStackTrace();
 		}
 

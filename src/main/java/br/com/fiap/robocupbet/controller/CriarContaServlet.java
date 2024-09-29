@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
 
-/**
- * Servlet implementation class CriarContaServler
- */
 @WebServlet("/criaConta")
 public class CriarContaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,7 +17,6 @@ public class CriarContaServlet extends HttpServlet {
     
     public CriarContaServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	

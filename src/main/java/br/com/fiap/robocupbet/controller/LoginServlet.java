@@ -1,11 +1,13 @@
 package br.com.fiap.robocupbet.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.fiap.robocupbet.connection.ConnectionPool;
 import br.com.fiap.robocupbet.dao.RoboDAO;
@@ -35,7 +37,11 @@ public class LoginServlet extends HttpServlet {
 			Usuario u = ud.findByEmail(usuarioEmail);
 			request.setAttribute("usuario", u);
 			request.setAttribute("robos", rd.findAll());
-			request.getRequestDispatcher("/robobet.jsp").forward(request, response);
+			HttpSession session=request.getSession();  
+	        session.setAttribute("usuario-id",u.getId());
+	        session.setAttribute("usuario-pontos",u.getPontos());
+	        request.setAttribute("pontos", u.getPontos());
+			request.getRequestDispatcher("PartidaServlet").forward(request, response);
 		} else {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}

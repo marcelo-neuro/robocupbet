@@ -101,7 +101,7 @@ public class IntegranteDAO {
 			Integrante integrante = new Integrante();
 			
 			while (rs.next()) {
-				integrante.setId(rs.getInt("id_integrantes"));
+				integrante.setId(rs.getInt("id_integrante"));
 				integrante.setIdEquipe(rs.getInt("id_equipe"));
 				integrante.setNome(rs.getString("nome_integrante"));
 				integrante.setRm(rs.getString("rm_integrante"));
@@ -117,4 +117,32 @@ public class IntegranteDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public List<Integrante> findByEquipe (int idEquipe) {
+		List<Integrante> integrantes = new ArrayList<>();
+		try {
+			String sql = "SELECT * FROM integrantes WHERE id_equipe = ?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, idEquipe);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				Integrante integrante = new Integrante();
+				integrante.setId(rs.getInt("id_integrante"));
+				integrante.setIdEquipe(rs.getInt("id_equipe"));
+				integrante.setNome(rs.getString("nome_integrante"));
+				integrante.setRm(rs.getString("rm_integrante"));
+				integrante.setUrlFoto(rs.getString("url_foto_integrante"));
+				integrantes.add(integrante);			
+			}
+			stmt.execute();
+			stmt.close();
+			rs.close();
+			
+			return integrantes;
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 }

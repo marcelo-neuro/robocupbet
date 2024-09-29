@@ -84,7 +84,7 @@ public class RoboDAO {
 				robo.setPeso(rs.getDouble("peso_robo"));
 				robo.setAltura(rs.getDouble("altura_robo"));
 				robo.setLargura(rs.getDouble("largura_robo"));
-				robo.setComprimento(rs.getDouble("comprimento_robo"));
+				robo.setComprimento(rs.getDouble("comprimento_roob"));
 				robo.setUrlFoto(rs.getString("url_foto_robo"));
 				robos.add(robo);
 			}

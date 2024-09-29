@@ -1,11 +1,27 @@
 package br.com.fiap.robocupbet.models;
 
-import java.time.LocalDateTime;
-
 public class Partida {
 	private int id;
 	private int idEquipeVencedora;
+	private Equipe equipeA;
+	private Equipe equipeB;
 		
+	public Equipe getEquipeA() {
+		return equipeA;
+	}
+
+	public void setEquipeA(Equipe equipeA) {
+		this.equipeA = equipeA;
+	}
+
+	public Equipe getEquipeB() {
+		return equipeB;
+	}
+
+	public void setEquipeB(Equipe equipeB) {
+		this.equipeB = equipeB;
+	}
+
 	public Partida() {}
 
 	public int getId() {

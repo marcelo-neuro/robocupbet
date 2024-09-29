@@ -31,9 +31,9 @@ html, body{
 }
 
 .img-loja{
-	width:150px;
-	height:150px;
-	object-fit:contain;
+	width:200px;
+	height:200px;
+	object-fit:fill;
 }
 
 .link-conta{
@@ -70,11 +70,8 @@ html, body{
 .button-aposta{
 	background-color:#ED145B;
 	color:#FFF;
-	width:20vw;
-	height:5vh;
 	font-size:18px;
 	border-radius:10px;
-	  border: none;
 }
 
 .container-fluid {

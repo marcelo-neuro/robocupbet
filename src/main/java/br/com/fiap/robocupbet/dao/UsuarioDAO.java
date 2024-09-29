@@ -49,6 +49,22 @@ public class UsuarioDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void updatePoints(int id, int pontosAdquiridos ) {
+		String sql = "UPDATE usuarios SET pontos_usuario = GREATEST(pontos_usuario + ?, 10) WHERE id_usuario = ?";
+
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, pontosAdquiridos);
+			stmt.setInt(2, id);
+			stmt.execute();
+			stmt.close();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 
 	public void delete(int id) {
 		String sql = "DELETE FROM usuarios WHERE id_usuario = ?";
@@ -94,8 +110,8 @@ public class UsuarioDAO {
 		try {
 			String sql = "SELECT * FROM usuarios WHERE id_usuario = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
 			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
 			Usuario usuario = new Usuario();
 
 			while (rs.next()) {

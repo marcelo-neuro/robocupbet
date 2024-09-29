@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.robocupbet.models.Equipe;
+import br.com.fiap.robocupbet.models.Partida;
+import br.com.fiap.robocupbet.models.Robo;
 
 public class EquipeDAO {
 	
@@ -91,8 +93,8 @@ public class EquipeDAO {
 		try {
 			String sql = "SELECT * FROM equipes WHERE id_equipe = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
 			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
 			Equipe equipe = new Equipe();
 			
 			while (rs.next()) {
@@ -134,6 +136,77 @@ public class EquipeDAO {
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
+		
+	}
+	
+	public List<Partida> findPartida(){		
+		List<Partida> partidas = new ArrayList<Partida>();
+		String sql = """
+					SELECT
+				   PARTIDAS.id_partida,
+				   eqA.nome_equipe AS equipeA,
+				   eqA.id_equipe as id_equipeA,
+				   rbA.nome_robo AS roboA,
+				   rbA.id_robo AS id_roboA,
+				   rbA.url_foto_robo AS roboA_img,
+				   eqB.id_equipe as id_equipeB,
+				   eqB.nome_equipe AS equipeB,
+				   rbB.id_robo AS id_roboB,
+					rbB.nome_robo AS roboB,
+				   rbB.url_foto_robo AS roboB_img
+				FROM PARTIDAS
+				   INNER JOIN
+				ITENS_PARTIDAS ipA ON PARTIDAS.id_partida = ipA.id_partida
+				INNER JOIN 
+				EQUIPES eqA ON ipA.id_equipe = eqA.id_equipe
+				INNER JOIN 
+				ROBOS rbA ON eqA.id_robo = rbA.id_robo
+				INNER JOIN 
+				ITENS_PARTIDAS ipB ON PARTIDAS.id_partida = ipB.id_partida
+				INNER JOIN 
+				EQUIPES eqB ON ipB.id_equipe = eqB.id_equipe
+				INNER JOIN 
+				ROBOS rbB ON eqB.id_robo = rbB.id_robo
+				WHERE rbA.id_robo < rbB.id_robo""";
+					
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+            	Robo roboA = new Robo();
+            	roboA.setId(rs.getInt("id_roboA"));
+            	roboA.setNome(rs.getString("roboA"));
+            	roboA.setUrlFoto(rs.getString("roboA_img"));	
+            	
+            	Robo roboB = new Robo();
+            	roboB.setId(rs.getInt("id_roboB"));
+            	roboB.setNome(rs.getString("roboB"));
+            	roboB.setUrlFoto(rs.getString("roboB_img"));
+
+            	Equipe equipeA = new Equipe();
+            	equipeA.setId(rs.getInt("id_equipeA"));
+            	equipeA.setRobo(roboA);
+            	equipeA.setNome(rs.getString("equipeA"));
+
+            	Equipe equipeB = new Equipe();
+            	equipeB.setId(rs.getInt("id_equipeB"));
+            	equipeB.setRobo(roboB);
+            	equipeB.setNome(rs.getString("equipeB"));
+            	
+            	Partida partida = new Partida();
+            	partida.setId(rs.getInt("id_partida"));
+            	partida.setEquipeA(equipeA);
+            	partida.setEquipeB(equipeB);
+            	
+            	partidas.add(partida);
+            }
+            
+		}catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+		return partidas;
 		
 	}
 	
