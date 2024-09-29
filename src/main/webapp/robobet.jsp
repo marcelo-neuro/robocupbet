@@ -10,19 +10,32 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="bg-black">
+
+	<nav class="navbar navbar-expand-lg p-3 d-flex header-page">
+		<a class="navbar-brand ms-5 fs-2 text-light" href="/robocupbet/">
+			<span class="title-cup">RoboCup</span> BET
+		</a>
+		<div class="collapse navbar-collapse grid gap-0 column-gap-3"
+			id="navbarNav">
+			<ul class="navbar-nav ms-auto me-5 fs-5">
+				<li class="nav-item p-3"><a class="nav-link text-white"
+					href="/robocupbet/index">Apostas</a></li>
+				<li class="nav-item p-3"><a class="nav-link text-white"
+					href="/robocupbet/loja.jsp">Loja</a></li>
+				<li class="nav-item p-3"><a class="nav-link text-white"
+					href="/robocupbet/logout">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+
 	<main
 		class="container d-flex flex-column justify-content-center align-items-center">
-
-
-		<h1 class="text-light mt-4">
-			<span class="title-cup">ROBOCUP</span> BET
-		</h1>
+		<h1 class="text-light">Apostas atuais</h1>
 
 		<div
 			class="position-loja form-usuario mt-5 me-5 d-flex flex-column align-items-center">
-			<p class="px-5 text-center text-light mt-2">FIAPoints: 1000</p>
-			<a href="/robocupbet/loja.jsp"
-				class="btn btn-style w-75 text-light fw-bold m-2"> Loja </a>
+			<p class="px-5 text-center text-light mt-2">FIAPoints:
+				${usuario.pontos}</p>
 		</div>
 
 		<c:forEach items="${lutas}" var="luta">
@@ -37,7 +50,7 @@
 						<input type="number" class="form-control w-50 mt-4 mb-4"
 							placeholder="$00.00" name="apostaNoA-${luta[0].id}"> <a
 							class="btn w-75 text-light fw-bold mb-2"
-							href="/robocupbet/integrantes.jsp">Ver Equipe</a>
+							href="/robocupbet/integrantes?eid=${luta[0].id}">Ver Equipe</a>
 					</div>
 
 					<div class="d-flex align-items-center justify-content-center">
@@ -50,17 +63,18 @@
 						<input type="number" class="form-control w-50 mt-4 mb-4"
 							placeholder="$00.00" name="apostaNoB-${luta[1].id}"> <a
 							class="btn w-75 text-light fw-bold mb-2"
-							href="/robocupbet/integrantes.jsp">Ver Equipe</a>
+							href="/robocupbet/integrantes?eid=${luta[1].id}">Ver Equipe</a>
 					</div>
 				</div>
 
 				<div>
-					<button class="button-aposta p-2 d-flex align-items-center justify-content-center text-decoration-none">
-						Confirmar aposta
-					</button>
+					<button
+						class="button-aposta p-2 d-flex align-items-center justify-content-center text-decoration-none">
+						Confirmar aposta</button>
 				</div>
 			</form>
 		</c:forEach>
+
 	</main>
 
 	<script src="scripts/aposta.js"></script>

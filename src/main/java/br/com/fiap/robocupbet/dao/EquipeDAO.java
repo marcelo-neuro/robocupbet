@@ -111,7 +111,7 @@ public class EquipeDAO {
 		}
 	}
 	
-	public List<Equipe> findByPartida(int idPartida) {
+	public List<Equipe> findByIdPartida(int idPartida) {
 		List<Equipe> es = new ArrayList<Equipe>();
 		String sql = """
 				SELECT * FROM equipes
@@ -134,7 +134,29 @@ public class EquipeDAO {
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public Equipe findByIdRobo(int idRobo) {
+		String sql = """
+				SELECT * FROM equipes
+				WHERE equipes.id_robo = ?
+				""";
 		
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idRobo);
+			ResultSet rs = ps.executeQuery();
+			
+			Equipe e = new Equipe();
+			if(rs.next()) {
+				e.setId(rs.getInt("id_equipe"));
+				e.setIdRobo(rs.getInt("id_robo"));
+				e.setNome(rs.getString("nome_equipe"));
+			}
+			return e;
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 }

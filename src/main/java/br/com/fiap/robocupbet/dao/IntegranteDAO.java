@@ -117,4 +117,38 @@ public class IntegranteDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public List<Integrante> findByIdRobo(int id) {
+		List<Integrante> integrantes = new ArrayList<Integrante>();
+		String sql = """
+				SELECT * FROM integrantes i
+				JOIN equipes e
+				ON e.id_equipe = i.id_equipe
+				WHERE e.id_robo = ?
+				""";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Integrante i = new Integrante();
+				i.setId(rs.getInt("id_integrante"));
+				i.setIdEquipe(rs.getInt("id_equipe"));
+				i.setNome(rs.getString("nome_integrante"));
+				i.setRm(rs.getString("rm_integrante"));
+				i.setUrlFoto(rs.getString("url_foto_integrante"));
+				integrantes.add(i);
+			}
+			
+			rs.close();
+			ps.close();
+			
+			return integrantes;
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }
