@@ -2,12 +2,12 @@
 
 html, body{
 	height:100%;
-	margin: 0;
+	margin: 1;
 	padding:0;
 }
 
 .bg-robocup{
-	background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, .5)), url(https://www.fiap.com.br/wp-content/themes/fiap2016/images/next/finals/fotos/robocup.jpg);
+	background-image: linear-gradient(to bottom, rgb(1, 0, 0), rgba(0, 0, 0, .5)), url(https://www.fiap.com.br/wp-content/themes/fiap2016/images/next/finals/fotos/robocup.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; 
@@ -31,9 +31,9 @@ html, body{
 }
 
 .img-loja{
-	width:150px;
-	height:150px;
-	object-fit:contain;
+	width:200px;
+	height:200px;
+	object-fit:fill;
 }
 
 .link-conta{
@@ -70,11 +70,8 @@ html, body{
 .button-aposta{
 	background-color:#ED145B;
 	color:#FFF;
-	width:20vw;
-	height:5vh;
 	font-size:18px;
 	border-radius:10px;
-	  border: none;
 }
 
 .container-fluid {

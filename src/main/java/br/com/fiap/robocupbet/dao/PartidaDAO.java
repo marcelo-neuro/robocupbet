@@ -54,7 +54,7 @@ public class PartidaDAO {
 		List<List<Robo>> lutas = new ArrayList<>();
 
 		String sql = """
-				SELECT r.id_robo, r.nome_robo, r.peso_robo, r.altura_robo, r.largura_robo, r.comprimento_robo, r.url_foto_robo 
+				SELECT r.id_robo, r.nome_robo, r.peso_robo, r.altura_robo, r.largura_robo, r.comprimento_roob, r.url_foto_robo 
 				FROM itens_partidas ip
 				JOIN equipes e
 				ON ip.id_equipe = e.id_equipe
@@ -74,7 +74,7 @@ public class PartidaDAO {
 				r.setPeso(rs.getDouble("peso_robo"));
 				r.setAltura(rs.getDouble("altura_robo"));
 				r.setLargura(rs.getDouble("largura_robo"));
-				r.setComprimento(rs.getDouble("comprimento_robo"));
+				r.setComprimento(rs.getDouble("comprimento_roob"));
 				r.setUrlFoto(rs.getString("url_foto_robo"));
 				robos.add(r);
 			}
