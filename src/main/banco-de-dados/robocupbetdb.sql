@@ -31,7 +31,7 @@ CREATE TABLE robos(
     peso_robo NUMBER(10,2) NOT NULL,
     altura_robo NUMBER(10,2) NOT NULL,
     largura_robo NUMBER(10,2) NOT NULL,
-    comprimento_roob NUMBER(10,2) NOT NULL,
+    comprimento_robo NUMBER(10,2) NOT NULL,
     url_foto_robo VARCHAR(200) CONSTRAINT url_foto_uk UNIQUE NOT NULL
 );
 

@@ -12,6 +12,9 @@
 <body class="bg-black">
 	<main class="container d-flex flex-column justify-content-center align-items-center">
 
+		<c:forEach items="${lutas}" var="luta">
+			<p>${luta[0].nome}</p>
+		</c:forEach>
 		
 		<h1 class="text-light mt-4">
 			<span class="title-cup">ROBOCUP</span> BET
