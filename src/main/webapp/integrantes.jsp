@@ -9,7 +9,24 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet">
 </head>
-<body class="bg-black">
+<body class="bg-black container-fluid">
+	<nav class="navbar navbar-expand-lg p-3 d-flex header-page">
+		<a class="navbar-brand ms-5 fs-2 text-light" href="/robocupbet/">
+			<span class="title-cup">RoboCup</span> BET
+		</a>
+		<div class="collapse navbar-collapse grid gap-0 column-gap-3"
+			id="navbarNav">
+			<ul class="navbar-nav ms-auto me-5 fs-5">
+				<li class="nav-item p-3"><a class="nav-link text-white"
+					href="/robocupbet/index">Apostas</a></li>
+				<li class="nav-item p-3"><a class="nav-link text-white"
+					href="/robocupbet/loja.jsp">Loja</a></li>
+				<li class="nav-item p-3"><a class="nav-link text-white"
+					href="/robocupbet/logout">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+
 	<main
 		class="container d-flex flex-column justify-content-center align-items-center">
 
@@ -17,7 +34,11 @@
 
 		<div
 			class="d-flex flex-column align-items-center bg-fiap-grey form-usuario p-5">
+<<<<<<< HEAD
 			<h2 class="text-light">Equipe: ${equipe.nome}</h2>
+=======
+			<h2 class="text-light">Grupo: -inserir-</h2>
+>>>>>>> 9e83893e78e8e038af5aa9aa2a3b8f6db7e69aea
 			<div class="d-flex">
 				<c:forEach items="${integrantes}" var="integrante">
 					<div class="d-flex flex-column align-items-center mx-3">

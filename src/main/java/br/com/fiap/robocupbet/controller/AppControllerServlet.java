@@ -1,12 +1,12 @@
 package br.com.fiap.robocupbet.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import br.com.fiap.robocupbet.connection.ConnectionPool;
 import br.com.fiap.robocupbet.dao.EquipeDAO;
 import br.com.fiap.robocupbet.dao.IntegranteDAO;
@@ -16,7 +16,11 @@ import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
 
 
+<<<<<<< HEAD
 @WebServlet(urlPatterns = {"/index", "/login", "/criaConta", "/integrantes", ""})
+=======
+@WebServlet(urlPatterns = {"/index", "/login", "/logout" ,"/criaConta", ""})
+>>>>>>> 9e83893e78e8e038af5aa9aa2a3b8f6db7e69aea
 public class AppControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,8 +47,13 @@ public class AppControllerServlet extends HttpServlet {
 			if(caminho.equals("/robocupbet/index")) {
 				getRobobet(request, response);
 			}
+<<<<<<< HEAD
 			if(caminho.equals("/robocupbet/integrantes")) {
 				getIntegrantes(request, response);
+=======
+			if(caminho.equals("/robocupbet/logout")) {
+				logoutUsuario(request, response);
+>>>>>>> 9e83893e78e8e038af5aa9aa2a3b8f6db7e69aea
 			}
 		} else if(metodo.equalsIgnoreCase("POST")) {
 			if (caminho.equals("/robocupbet/login")) {
@@ -56,6 +65,11 @@ public class AppControllerServlet extends HttpServlet {
 		}
 	}
 	
+	private void logoutUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().invalidate();
+		request.getRequestDispatcher("/homePage.jsp").forward(request, response);
+	}
+
 	private void getHomePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/homePage.jsp").forward(request, response);
 	}
