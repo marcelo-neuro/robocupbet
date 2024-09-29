@@ -71,13 +71,20 @@ public class ApostaServlet extends HttpServlet {
 			
 		}else {
 			pontosGanhos = ApostaService.betValueResult(inputOnA, 'b');
+			try {
+				appController.atualizarPontos(id, (int) pontosGanhos);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			aposta.setIdPartida(partida.getId());
 			aposta.setIdUsuario(id);
-			aposta.setValor(inputOnB);
+			aposta.setValor(betOnAParam == null ? inputOnB : inputOnA);
 			boolean vencida = pontosGanhos > 0 ? true : false; 
 			aposta.setVencida(vencida);
 			try {
 				appController.adicionarAposta(aposta);
+				request.getSession().setAttribute("usuario-pontos", user.getPontos());
+				request.setAttribute("pontos", user.getPontos());
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
