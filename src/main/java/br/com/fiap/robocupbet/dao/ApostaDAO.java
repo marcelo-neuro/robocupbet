@@ -18,13 +18,15 @@ public class ApostaDAO {
 	}
 	
 	public void insert(Aposta aposta) {
-		String sql = "INSERT INTO apostas (valor_aposta, aposta_ativa, venceu_aposta) values (?, ?, ?)";
+		String sql = "INSERT INTO apostas (id_usuario, id_partida, valor_aposta, aposta_ativa, venceu_aposta) values (?, ?, ?, ? ,?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, aposta.getValor());
-			stmt.setBoolean(2, aposta.isAtiva());
-			stmt.setBoolean(3, aposta.isVencida());
+			stmt.setInt(1, aposta.getIdUsuario());
+			stmt.setInt(2, aposta.getIdPartida());
+			stmt.setInt(3, aposta.getValor());
+			stmt.setBoolean(4, aposta.isAtiva());
+			stmt.setBoolean(5, aposta.isVencida());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e){

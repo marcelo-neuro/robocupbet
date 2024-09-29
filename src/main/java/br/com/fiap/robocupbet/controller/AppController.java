@@ -69,6 +69,10 @@ public class AppController {
 	public void atualizarUsuario(Usuario usuario) throws SQLException {
 		usuarioDAO.update(usuario);
 	}
+	
+	public void atualizarPontos(int id, int pontos) throws SQLException {
+		usuarioDAO.updatePoints(id, pontos);
+	}
 
 	public void removerUsuario(int id) throws SQLException {
 		usuarioDAO.delete(id);
