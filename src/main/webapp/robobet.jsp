@@ -26,9 +26,9 @@
 		</div>
 
 		<c:forEach items="${lutas}" var="luta">
-			<div
+			<form
 				class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey"
-				id="luta-${luta[0].id}-${luta[1].id}">
+				id="luta-${luta[0].id}-${luta[1].id}" method="post" action="">
 				<div
 					class="d-flex flex-row justify-content-center align-items-center w-100">
 					<div class="d-flex align-items-center flex-column w-50">
@@ -55,11 +55,11 @@
 				</div>
 
 				<div>
-					<button
-						class="button-aposta p-2 d-flex align-items-center justify-content-center text-decoration-none">Confirmar
-						aposta</button>
+					<button class="button-aposta p-2 d-flex align-items-center justify-content-center text-decoration-none">
+						Confirmar aposta
+					</button>
 				</div>
-			</div>
+			</form>
 		</c:forEach>
 	</main>
 
