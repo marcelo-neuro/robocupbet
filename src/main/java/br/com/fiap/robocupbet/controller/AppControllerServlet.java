@@ -8,18 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.fiap.robocupbet.connection.ConnectionPool;
+import br.com.fiap.robocupbet.dao.EquipeDAO;
+import br.com.fiap.robocupbet.dao.IntegranteDAO;
 import br.com.fiap.robocupbet.dao.PartidaDAO;
 import br.com.fiap.robocupbet.dao.UsuarioDAO;
 import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
 
 
-@WebServlet(urlPatterns = {"/index", "/login", "/criaConta", ""})
+@WebServlet(urlPatterns = {"/index", "/login", "/criaConta", "/integrantes", ""})
 public class AppControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	private UsuarioDAO usuarioDao = new UsuarioDAO(ConnectionPool.getConnection());
 	private PartidaDAO partidaDao = new PartidaDAO(ConnectionPool.getConnection());
+	private IntegranteDAO integranteDao = new IntegranteDAO(ConnectionPool.getConnection());
+	private EquipeDAO equipeDao = new EquipeDAO(ConnectionPool.getConnection());
     
     public AppControllerServlet() {
         super();
@@ -38,6 +42,9 @@ public class AppControllerServlet extends HttpServlet {
 			}
 			if(caminho.equals("/robocupbet/index")) {
 				getRobobet(request, response);
+			}
+			if(caminho.equals("/robocupbet/integrantes")) {
+				getIntegrantes(request, response);
 			}
 		} else if(metodo.equalsIgnoreCase("POST")) {
 			if (caminho.equals("/robocupbet/login")) {
@@ -85,8 +92,14 @@ public class AppControllerServlet extends HttpServlet {
 		request.getRequestDispatcher("/robobet.jsp").forward(request, response);
 	}
 	
+	private void getIntegrantes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int idRobo = Integer.valueOf(request.getParameter("eid"));
+		request.setAttribute("integrantes", integranteDao.findByIdRobo(idRobo));
+		request.setAttribute("equipe", equipeDao.findByIdRobo(idRobo));
+		request.getRequestDispatcher("/integrantes.jsp").forward(request, response);
+	}
 	
 	private void carregaRobos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("lutas", partidaDao.findAllRobosInPartida());
+		request.setAttribute("lutas", partidaDao.findAllLutasAtivas());
 	}
 }

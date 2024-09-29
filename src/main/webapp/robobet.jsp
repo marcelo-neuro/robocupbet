@@ -37,7 +37,7 @@
 						<input type="number" class="form-control w-50 mt-4 mb-4"
 							placeholder="$00.00" name="apostaNoA-${luta[0].id}"> <a
 							class="btn w-75 text-light fw-bold mb-2"
-							href="/robocupbet/integrantes.jsp">Ver Equipe</a>
+							href="/robocupbet/integrantes?eid=${luta[0].id}">Ver Equipe</a>
 					</div>
 
 					<div class="d-flex align-items-center justify-content-center">
@@ -50,7 +50,7 @@
 						<input type="number" class="form-control w-50 mt-4 mb-4"
 							placeholder="$00.00" name="apostaNoB-${luta[1].id}"> <a
 							class="btn w-75 text-light fw-bold mb-2"
-							href="/robocupbet/integrantes.jsp">Ver Equipe</a>
+							href="/robocupbet/integrantes?eid=${luta[1].id}">Ver Equipe</a>
 					</div>
 				</div>
 
