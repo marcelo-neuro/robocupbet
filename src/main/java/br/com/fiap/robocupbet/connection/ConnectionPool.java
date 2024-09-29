@@ -15,6 +15,7 @@ public class ConnectionPool {
 
 	static {
 		try {
+			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			HikariConfig config = new HikariConfig();
 			config.setJdbcUrl(ORACLE_URL);

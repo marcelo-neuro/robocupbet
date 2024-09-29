@@ -148,6 +148,10 @@ public class AppController {
 	//public List<Partida> listarPartidas() throws SQLException {
 	//	return partidaDAO.findAll();
 	//}
+	
+	public List<List<Robo>> findAllRobosInPartidas() {
+		return partidaDAO.findAllRobosInPartida();
+	}
 
 	// metodos dos Integrantes
 	public void adicionarIntegrante(Integrante integrante) throws SQLException {
