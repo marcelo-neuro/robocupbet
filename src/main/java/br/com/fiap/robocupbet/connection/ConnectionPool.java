@@ -18,6 +18,9 @@ public class ConnectionPool {
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			HikariConfig config = new HikariConfig();
+			System.out.println(ORACLE_PASSWORD);
+			System.out.println(ORACLE_USER);
+			
 			config.setJdbcUrl(ORACLE_URL);
 			config.setUsername(ORACLE_USER);
 			config.setPassword(ORACLE_PASSWORD);

@@ -33,14 +33,15 @@ public class EquipeDAO {
 	}
 	
 	public void update(Equipe equipe) {
-		String sql = "UPDATE equipes SET id_equipe = ?, id_robo = ?, nome_equipe = ? WHERE id_equipe = ?";
+		String sql = "UPDATE equipes SET id_equipe = ?, id_robo = ?, id_partida_atual = ?, nome_equipe = ? WHERE id_equipe = ?";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, equipe.getId());
 			stmt.setInt(2, equipe.getIdRobo());
-			stmt.setString(3, equipe.getNome());
-			stmt.setInt(4, equipe.getId());
+			stmt.setInt(3, equipe.getIdPartidaAtual());
+			stmt.setString(4, equipe.getNome());
+			stmt.setInt(5, equipe.getId());
 			stmt.execute();
 			stmt.close();
 			
@@ -74,6 +75,7 @@ public class EquipeDAO {
 				Equipe equipe = new Equipe();
 				equipe.setId(rs.getInt("id_equipe"));
 				equipe.setIdRobo(rs.getInt("id_robo"));
+				equipe.setIdPartidaAtual(rs.getInt("id_partida_atual"));
 				equipe.setNome(rs.getString("nome_equipe"));
 				equipes.add(equipe);
 			}
@@ -98,6 +100,7 @@ public class EquipeDAO {
 			while (rs.next()) {
 				equipe.setId(rs.getInt("id_equipe"));
 				equipe.setIdRobo(rs.getInt("id_robo"));
+				equipe.setIdPartidaAtual(rs.getInt("id_partida_atual"));
 				equipe.setNome(rs.getString("nome_equipe"));
 			}
 			
@@ -111,30 +114,6 @@ public class EquipeDAO {
 		}
 	}
 	
-	public List<Equipe> findByIdPartida(int idPartida) {
-		List<Equipe> es = new ArrayList<Equipe>();
-		String sql = """
-				SELECT * FROM equipes
-				WHERE equipes.id_partida = ?
-				""";
-		
-		try {
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, idPartida);
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				Equipe equipe = new Equipe();
-				equipe.setId(rs.getInt("id_equipe"));
-				equipe.setIdRobo(rs.getInt("id_robo"));
-				equipe.setNome(rs.getString("nome_equipe"));
-				es.add(equipe);
-			}
-			return es;
-		} catch(SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
 	
 	public Equipe findByIdRobo(int idRobo) {
 		String sql = """
@@ -151,6 +130,7 @@ public class EquipeDAO {
 			if(rs.next()) {
 				e.setId(rs.getInt("id_equipe"));
 				e.setIdRobo(rs.getInt("id_robo"));
+				e.setIdPartidaAtual(rs.getInt("id_partida_atual"));
 				e.setNome(rs.getString("nome_equipe"));
 			}
 			return e;

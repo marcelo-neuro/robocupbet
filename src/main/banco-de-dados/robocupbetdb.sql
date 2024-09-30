@@ -55,6 +55,7 @@ DROP TABLE equipes;
 CREATE TABLE equipes(
     id_equipe NUMBER(10) CONSTRAINT equipe_id_pk PRIMARY KEY,
     id_robo NUMBER(10) NOT NULL UNIQUE,
+    id_partida_atual NUMBER(10),
     nome_equipe VARCHAR(50) CONSTRAINT equipe_nome_uk UNIQUE NOT NULL
 );
 
@@ -62,6 +63,11 @@ ALTER TABLE equipes
 ADD CONSTRAINT equipe_id_robo_fk 
 FOREIGN KEY(id_robo)
 REFERENCES robos(id_robo);
+
+ALTER TABLE equipes
+ADD CONSTRAINT equipe_id_partida_atual_fk 
+FOREIGN KEY(id_partida_atual)
+REFERENCES partidas(id_partida);
 
 DROP SEQUENCE equipes_sequence;
 DROP TRIGGER tr_insert_id_equipe;
