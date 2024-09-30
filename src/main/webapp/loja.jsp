@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
 		<a class="navbar-brand ms-5 fs-2 text-light" href="/robocupbet/">
 			<span class="title-cup">RoboCup</span> BET
 		</a>
+		
 		<div class="collapse navbar-collapse grid gap-0 column-gap-3"
 			id="navbarNav">
 			<ul class="navbar-nav ms-auto me-5 fs-5">
@@ -41,36 +43,17 @@
 
 		<div
 			class="form-usuario w-50 d-flex flex-column align-items-center mt-5 mb-5 bg-fiap-grey">
-
+			
+			<c:forEach items="${premios}" var="premio">
 			<div class="d-flex flex-column align-items-center mt-5 mb-5">
-				<img src="assets/imagens/pet.png" class="img-loja img-fluid">
-				<h2 class="text-light">Garrafa Pet FIAP</h2>
-				<p class="fs-4 text-light">$1000</p>
+				<img src="${premio.urlFoto}" class="img-loja img-fluid">
+				<h2 class="text-light">${premio.nome}</h2>
+				<p class="fs-4 text-light">$${premio.valor}</p>
 				<button class="btn btn-style text-light fw-bold m-3 px-5">Comprar</button>
 			</div>
 			<span class="w-75 fiap-border"></span>
-			<div class="d-flex flex-column align-items-center mt-5 mb-5">
-				<img src="assets/imagens/bandaid.png" class="img-loja img-fluid">
-				<h2 class="text-light">Band-aid FIAP</h2>
-				<p class="fs-4 text-light">$3000</p>
-				<button class="btn btn-style text-light fw-bold m-3 px-5">Comprar</button>
-			</div>
-			<span class="w-75 fiap-border"></span>
-			<div class="d-flex flex-column align-items-center mt-5 mb-5">
-				<img src="assets/imagens/wingslompson.png"
-					class="img-loja img-fluid">
-				<h2 class="text-light">Wingslopmson FIAP</h2>
-				<p class="fs-4 text-light">$8000</p>
-				<button class="btn btn-style text-light fw-bold m-3 px-5">Comprar</button>
-			</div>
-			<span class="w-75 fiap-border"></span>
-			<div class="d-flex flex-column align-items-center mt-5 mb-5">
-				<img src="assets/imagens/FIAP-Apoiador.png"
-					class="img-loja img-fluid">
-				<h2 class="text-light">A FIAP</h2>
-				<p class="fs-4 text-light">$100.000.000.000,00</p>
-				<button class="btn btn-style text-light fw-bold m-3 px-5">Comprar</button>
-			</div>
+			</c:forEach>
+			
 		</div>
 
 	</main>

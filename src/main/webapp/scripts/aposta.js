@@ -5,7 +5,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 	const t = document.getElementById("aposta");
 
-	t.addEventListener("click", function() {
+	t.addEventListener("change", function() {
 		console.log(t);
 	})
 
