@@ -9,15 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.fiap.robocupbet.connection.ConnectionPool;
+import br.com.fiap.robocupbet.dao.ApostaDAO;
 import br.com.fiap.robocupbet.dao.EquipeDAO;
 import br.com.fiap.robocupbet.dao.IntegranteDAO;
 import br.com.fiap.robocupbet.dao.PartidaDAO;
 import br.com.fiap.robocupbet.dao.PremioDAO;
 import br.com.fiap.robocupbet.dao.UsuarioDAO;
+import br.com.fiap.robocupbet.models.Equipe;
 import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
 
-@WebServlet(urlPatterns={"/index", "/login", "/logout", "/criaConta", "/integrantes", "/apostar", "/loja"})
+@WebServlet(urlPatterns={"/index", "/login", "/logout", "/criaConta", "/integrantes", "/apostar", "/loja", ""})
 public class AppControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +28,7 @@ public class AppControllerServlet extends HttpServlet {
 	private IntegranteDAO integranteDao = new IntegranteDAO(ConnectionPool.getConnection());
 	private EquipeDAO equipeDao = new EquipeDAO(ConnectionPool.getConnection());
 	private PremioDAO premioDao = new PremioDAO(ConnectionPool.getConnection());
+	private ApostaDAO apostaDao = new ApostaDAO(ConnectionPool.getConnection());
 
 	public AppControllerServlet() {
 		super();
@@ -61,7 +64,7 @@ public class AppControllerServlet extends HttpServlet {
 				postCriaConta(request, response);
 			}
 			if (caminho.equals("/robocupbet/apostar")) {
-				
+				postAposta(request, response);
 			}
 		}
 	}
@@ -103,6 +106,12 @@ public class AppControllerServlet extends HttpServlet {
 	}
 	
 	private void postAposta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int idRobo = Integer.valueOf(request.getParameter("roboAposta"));
+		int valorAposta = Integer.valueOf(request.getParameter("valorAposta"));
+		
+		Equipe equipe = equipeDao.findByIdRobo(idRobo);
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		
 		
 	}
 

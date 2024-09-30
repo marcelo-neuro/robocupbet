@@ -25,7 +25,7 @@ public class ConnectionPool {
 			config.setUsername(ORACLE_USER);
 			config.setPassword(ORACLE_PASSWORD);
 
-			config.setMaximumPoolSize(20);
+			config.setMaximumPoolSize(10);
 			config.setMinimumIdle(5);
 			config.setIdleTimeout(60000);
 			config.setConnectionTimeout(30000);

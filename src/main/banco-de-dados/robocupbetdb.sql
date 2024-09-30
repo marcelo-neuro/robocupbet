@@ -118,7 +118,7 @@ DROP TABLE partidas;
 
 CREATE TABLE partidas(
     id_partida NUMBER(10) CONSTRAINT partida_id_pk PRIMARY KEY,
-    id_equipe_vencedora NUMBER(10),
+    id_equipe_vencedora NUMBER(10)
 );
 
 ALTER TABLE partidas
@@ -181,7 +181,7 @@ CREATE TABLE apostas(
     id_usuario NUMBER(10) NOT NULL,
     id_partida NUMBER(10) NOT NULL,
     id_equipe_apostada NUMBER(10) NOT NULL,
-    valor_aposta NUMBER(10) CONSTRAINT valor_aposta_ck CHECK (valor_aposta > 0) NOT NULL,
+    valor_aposta NUMBER(10) CONSTRAINT valor_aposta_ck CHECK (valor_aposta > 0) NOT NULL
 );
 
 ALTER TABLE apostas
