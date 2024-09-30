@@ -7,15 +7,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import br.com.fiap.robocupbet.connection.ConnectionPool;
 import br.com.fiap.robocupbet.dao.EquipeDAO;
 import br.com.fiap.robocupbet.dao.IntegranteDAO;
 import br.com.fiap.robocupbet.dao.PartidaDAO;
+import br.com.fiap.robocupbet.dao.PremioDAO;
 import br.com.fiap.robocupbet.dao.UsuarioDAO;
 import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
 
-@WebServlet(urlPatterns={"/index", "/login", "/logout", "/criaConta", "/integrantes", "/apostar", ""})
+@WebServlet(urlPatterns={"/index", "/login", "/logout", "/criaConta", "/integrantes", "/apostar", "/loja"})
 public class AppControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,6 +25,7 @@ public class AppControllerServlet extends HttpServlet {
 	private PartidaDAO partidaDao = new PartidaDAO(ConnectionPool.getConnection());
 	private IntegranteDAO integranteDao = new IntegranteDAO(ConnectionPool.getConnection());
 	private EquipeDAO equipeDao = new EquipeDAO(ConnectionPool.getConnection());
+	private PremioDAO premioDao = new PremioDAO(ConnectionPool.getConnection());
 
 	public AppControllerServlet() {
 		super();
@@ -46,6 +49,9 @@ public class AppControllerServlet extends HttpServlet {
 			}
 			if (caminho.equals("/robocupbet/logout")) {
 				logoutUsuario(request, response);
+			}
+			if (caminho.equals("/robocupbet/loja")) {
+				getLoja(request, response);
 			}
 		} else if(metodo.equalsIgnoreCase("POST")) {
 			if (caminho.equals("/robocupbet/login")) {
@@ -102,9 +108,15 @@ public class AppControllerServlet extends HttpServlet {
 
 	private void getRobobet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		carregaRobos(request, response);
+		
 		request.getRequestDispatcher("/robobet.jsp").forward(request, response);
 	}
 
+	private void getLoja(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("premios", premioDao.findAll());
+		System.out.println(premioDao.findAll());
+		request.getRequestDispatcher("/loja.jsp").forward(request, response);
+	}
 	private void getIntegrantes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idRobo = Integer.valueOf(request.getParameter("eid"));
 		request.setAttribute("integrantes", integranteDao.findByIdRobo(idRobo));
@@ -114,6 +126,6 @@ public class AppControllerServlet extends HttpServlet {
 
 	private void carregaRobos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("lutas", partidaDao.findAllLutasAtivas());
+		request.setAttribute("lutas", partidaDao.findAllLutasInPartida());
 	}
 }
