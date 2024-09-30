@@ -174,16 +174,9 @@ CREATE TABLE apostas(
     id_aposta NUMBER(10) CONSTRAINT aposta_id_pk PRIMARY KEY,
     id_usuario NUMBER(10) NOT NULL,
     id_partida NUMBER(10) NOT NULL,
+    id_equipe_apostada NUMBER(10) NOT NULL,
     valor_aposta NUMBER(10) CONSTRAINT valor_aposta_ck CHECK (valor_aposta > 0) NOT NULL,
-    aposta_ativa NUMBER(1) CONSTRAINT aposta_ativa_bool CHECK (aposta_ativa IN(0, 1)) NOT NULL,
-    venceu_aposta NUMBER(1) CONSTRAINT venceu_aposta_bool CHECK (venceu_aposta IN(0, 1)) NOT NULL
 );
-
-ALTER TABLE apostas
-MODIFY(aposta_ativa DEFAULT(0));
-
-ALTER TABLE apostas
-MODIFY(venceu_aposta DEFAULT(0));
 
 ALTER TABLE apostas
 ADD CONSTRAINT aposta_id_usuario_fk
@@ -194,6 +187,11 @@ ALTER TABLE apostas
 ADD CONSTRAINT aposta_id_partida_fk
 FOREIGN KEY(id_partida)
 REFERENCES partidas(id_partida);
+
+ALTER TABLE apostas
+ADD CONSTRAINT aposta_id_equipe_apostada_fk 
+FOREIGN KEY(id_equipe_apostada)
+REFERENCES equipes(id_equipe);
 
 DROP SEQUENCE apostas_sequence;
 DROP TRIGGER tr_insert_id_aposta;

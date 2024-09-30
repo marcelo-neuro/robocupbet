@@ -15,7 +15,7 @@ import br.com.fiap.robocupbet.dao.UsuarioDAO;
 import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
 
-@WebServlet(urlPatterns={"/index", "/login", "/logout", "/criaConta", "/integrantes", ""})
+@WebServlet(urlPatterns={"/index", "/login", "/logout", "/criaConta", "/integrantes", "/apostar", ""})
 public class AppControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -54,6 +54,9 @@ public class AppControllerServlet extends HttpServlet {
 			if (caminho.equals("/robocupbet/criaConta")) {
 				postCriaConta(request, response);
 			}
+			if (caminho.equals("/robocupbet/apostar")) {
+				
+			}
 		}
 	}
 
@@ -81,7 +84,7 @@ public class AppControllerServlet extends HttpServlet {
 		getHomePage(request, response);
 	}
 
-	protected void postCriaConta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void postCriaConta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Usuario u = new Usuario();
 		u.setNome(request.getParameter("usuarioNome"));
 		u.setEmail(request.getParameter("usuarioEmail"));
@@ -91,6 +94,10 @@ public class AppControllerServlet extends HttpServlet {
 
 		request.setAttribute("usuario", u);
 		getRobobet(request, response);
+	}
+	
+	private void postAposta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 	private void getRobobet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
