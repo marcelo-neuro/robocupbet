@@ -29,6 +29,8 @@
 						<li class="nav-item p-3"><a class="nav-link text-white"
 							href="/robocupbet/loja.jsp">Loja</a></li>
 						<li class="nav-item p-3"><a class="nav-link text-white"
+							href="/robocupbet/perfil.jsp">Perfil</a></li>
+						<li class="nav-item p-3"><a class="nav-link text-white"
 							href="/robocupbet/logout">Logout</a></li>
 					</ul>
 				</div>

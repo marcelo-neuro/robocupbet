@@ -36,6 +36,12 @@ html, body{
 .img-loja{
 	width:200px;
 	height:200px;
+	object-fit:contain;
+}
+
+.img-integrantes{
+	width:200px;
+	height:200px;
 	object-fit:fill;
 }
 

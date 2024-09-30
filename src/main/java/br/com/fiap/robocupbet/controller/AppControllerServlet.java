@@ -95,6 +95,7 @@ public class AppControllerServlet extends HttpServlet {
 
 	private void getRobobet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		carregaRobos(request, response);
+		
 		request.getRequestDispatcher("/robobet.jsp").forward(request, response);
 	}
 
@@ -107,6 +108,6 @@ public class AppControllerServlet extends HttpServlet {
 
 	private void carregaRobos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("lutas", partidaDao.findAllLutasAtivas());
+		request.setAttribute("lutas", partidaDao.findAllLutasInPartida());
 	}
 }

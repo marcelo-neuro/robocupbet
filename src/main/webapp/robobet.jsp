@@ -23,6 +23,8 @@
 				<li class="nav-item p-3"><a class="nav-link text-white"
 					href="/robocupbet/loja.jsp">Loja</a></li>
 				<li class="nav-item p-3"><a class="nav-link text-white"
+					href="/robocupbet/perfil.jsp">Perfil</a></li>
+				<li class="nav-item p-3"><a class="nav-link text-white"
 					href="/robocupbet/logout">Logout</a></li>
 			</ul>
 		</div>
@@ -38,6 +40,7 @@
 				${usuario.pontos}</p>
 		</div>
 
+
 		<c:forEach items="${lutas}" var="luta">
 			<form
 				class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey"
@@ -47,10 +50,17 @@
 					<div class="d-flex align-items-center flex-column w-50">
 						<h3 class="text-center text-light fs-3">${luta[0].nome}</h3>
 						<img src="${luta[0].urlFoto}" class="img-robos img-fluid rounded">
-						<input type="number" class="form-control w-50 mt-4 mb-4"
-							placeholder="$00.00" name="apostaNoA-${luta[0].id}"> <a
-							class="btn w-75 text-light fw-bold mb-2"
+
+
+
+						<a class="btn w-75 text-light fw-bold mb-2"
 							href="/robocupbet/integrantes?eid=${luta[0].id}">Ver Equipe</a>
+
+						<div class="d-flex align-items-center text-light justify-content-center">
+							<input class="form-check-input mt-0" type="radio" value="${luta[0].id}" name="aposta" id="aposta"
+								aria-label="Checkbox for following text input">
+							<p class="align-self-center">Aposta no ${luta[0].nome}</p>
+						</div>
 					</div>
 
 					<div class="d-flex align-items-center justify-content-center">
@@ -60,17 +70,26 @@
 					<div class="d-flex align-items-center flex-column w-50">
 						<h3 class="text-center text-light fs-3">${luta[1].nome}</h3>
 						<img src="${luta[1].urlFoto}" class="img-robos img-fluid rounded">
-						<input type="number" class="form-control w-50 mt-4 mb-4"
-							placeholder="$00.00" name="apostaNoB-${luta[1].id}"> <a
-							class="btn w-75 text-light fw-bold mb-2"
+
+
+
+						<a class="btn w-75 text-light fw-bold mb-2"
 							href="/robocupbet/integrantes?eid=${luta[1].id}">Ver Equipe</a>
+						<div class="d-flex align-items-center text-light">
+							<input class="form-check-input mt-0" type="radio" name="aposta" value="${luta[1].id}" id="aposta"
+								aria-label="Checkbox for following text input">
+							<p>Aposta no ${luta[1].nome}</p>
+						</div>
 					</div>
 				</div>
 
-				<div>
+				<div class="w-75 d-flex flex-column align-items-center justify-content-center">
+					<input type="number" class="form-control w-50 mt-4 mb-4"
+						placeholder="$00.00" name="valorAposta">
 					<button
 						class="button-aposta p-2 d-flex align-items-center justify-content-center text-decoration-none">
-						Confirmar aposta</button>
+						Confirmar aposta
+					</button>
 				</div>
 			</form>
 		</c:forEach>
