@@ -45,7 +45,7 @@
 			<form
 				class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey"
 				id="luta-${luta[0].id}-${luta[1].id}" method="post"
-				action="/robocupbet/apostar?r=${luta[0].id}">
+				action="/robocupbet/apostar">
 				<div
 					class="d-flex flex-row justify-content-center align-items-center w-100">
 					<div class="d-flex align-items-center flex-column w-50">
@@ -58,9 +58,9 @@
 						<div
 							class="d-flex align-items-center text-light justify-content-center">
 								<input class="form-check-input mt-0" type="radio"
-									value="${luta[0].id}" name="aposta" id="aposta"
+									value="${luta[0].id}" name="roboAposta" id="aposta"
 									aria-label="Checkbox for following text input">
-								<label class="ms-2">Aposta no ${luta[0].nome}</label>
+								<label class="ms-2">Apostar no ${luta[0].nome}</label>
 
 						</div>
 					</div>
@@ -77,10 +77,10 @@
 							href="/robocupbet/integrantes?eid=${luta[1].id}">Ver Equipe</a>
 
 						<div class="d-flex align-items-center text-light">
-							<input class="form-check-input mt-0" type="radio" name="aposta"
+							<input class="form-check-input mt-0" type="radio" name="roboAposta"
 								value="${luta[1].id}" id="aposta"
 								aria-label="Checkbox for following text input">
-								<label class="ms-2">Aposta no ${luta[1].nome}</label>
+								<label class="ms-2">Apostar no ${luta[1].nome}</label>
 						</div>
 					</div>
 				</div>
