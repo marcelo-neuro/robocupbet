@@ -126,7 +126,9 @@ public class PartidaDAO {
 				r.setComprimento(rs.getDouble("comprimento_robo"));
 				r.setUrlFoto(rs.getString("url_foto_robo"));
 				robos.add(r);
+				System.out.println(r.getNome());
 			}
+			System.out.println("out");
 			
 			for(int i = 0; i < robos.size();) {
 				lutas.add(new ArrayList<>());
