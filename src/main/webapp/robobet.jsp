@@ -41,14 +41,14 @@
 		<c:forEach items="${lutas}" var="luta">
 			<form
 				class="d-flex flex-column form-usuario justify-content-center align-items-center p-5 w-50 mt-5 mb-5 bg-fiap-grey"
-				id="luta-${luta[0].id}-${luta[1].id}" method="post" action="">
+				id="luta-${luta[0].id}-${luta[1].id}" method="post" action="/robocupbet/apostar?r=${luta[0].id}">
 				<div
 					class="d-flex flex-row justify-content-center align-items-center w-100">
 					<div class="d-flex align-items-center flex-column w-50">
 						<h3 class="text-center text-light fs-3">${luta[0].nome}</h3>
 						<img src="${luta[0].urlFoto}" class="img-robos img-fluid rounded">
 						<input type="number" class="form-control w-50 mt-4 mb-4"
-							placeholder="$00.00" name="apostaNoA-${luta[0].id}"> <a
+							placeholder="$00.00" name="apostaNoA"> <a
 							class="btn w-75 text-light fw-bold mb-2"
 							href="/robocupbet/integrantes?eid=${luta[0].id}">Ver Equipe</a>
 					</div>

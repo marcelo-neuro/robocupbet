@@ -4,16 +4,14 @@ public class Aposta {
 	private int id;
 	private int idUsuario;
 	private int idPartida;
+	private int idEquipe;
 	private int valor;
-	private boolean ativa;
-	private boolean vencida;
 	
-	public Aposta(int idUsuario, int idPartida, int valor, boolean ativa, boolean vencida) {
+	public Aposta(int idUsuario, int idPartida, int idEquipe, int valor) {
 		this.idUsuario = idUsuario;
 		this.idPartida = idPartida;
+		this.idEquipe = idEquipe;
 		this.valor = valor;
-		this.ativa = ativa;
-		this.vencida = vencida;
 	}
 	
 	public Aposta() {}
@@ -50,21 +48,13 @@ public class Aposta {
 		this.valor = valor;
 	}
 
-	public boolean isAtiva() {
-		return ativa;
+	public int getIdEquipe() {
+		return idEquipe;
 	}
 
-	public void setAtiva(boolean ativa) {
-		this.ativa = ativa;
+	public void setIdEquipe(int idEquipe) {
+		this.idEquipe = idEquipe;
 	}
 
-	public boolean isVencida() {
-		return vencida;
-	}
-
-	public void setVencida(boolean vencida) {
-		this.vencida = vencida;
-	}
-	
 	
 }

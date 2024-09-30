@@ -18,13 +18,14 @@ public class ApostaDAO {
 	}
 	
 	public void insert(Aposta aposta) {
-		String sql = "INSERT INTO apostas (valor_aposta, aposta_ativa, venceu_aposta) values (?, ?, ?)";
+		String sql = "INSERT INTO apostas (id_usuario, id_partida, id_equipe_apostada, valor_aposta) values (?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, aposta.getValor());
-			stmt.setBoolean(2, aposta.isAtiva());
-			stmt.setBoolean(3, aposta.isVencida());
+			stmt.setInt(1, aposta.getIdUsuario());
+			stmt.setInt(2, aposta.getIdPartida());
+			stmt.setInt(3, aposta.getIdEquipe());
+			stmt.setInt(4, aposta.getValor());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e){
@@ -33,15 +34,20 @@ public class ApostaDAO {
 	}
 	
 	public void update(Aposta aposta) {
-		String sql = "UPDATE apostas SET id_aposta = ?, valor_aposta = ?, aposta_ativa = ?, venceu_aposta = ? WHERE id_aposta = ?";
+		String sql = """
+				UPDATE apostas 
+				SET id_aposta = ?, id_usuario = ?, id_partida = ?, id_equipe_apostada = ?, valor_aposta = ? 
+				WHERE id_aposta = ?
+				""";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, aposta.getId());
-			stmt.setInt(2, aposta.getValor());
-			stmt.setBoolean(3, aposta.isAtiva());
-			stmt.setBoolean(4, aposta.isVencida());
-			stmt.setInt(5, aposta.getId());
+			stmt.setInt(2, aposta.getIdUsuario());
+			stmt.setInt(3, aposta.getIdPartida());
+			stmt.setInt(4, aposta.getIdEquipe());
+			stmt.setInt(5, aposta.getValor());
+			stmt.setInt(6, aposta.getId());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e){
@@ -74,9 +80,8 @@ public class ApostaDAO {
 				aposta.setId(rs.getInt("id_aposta"));
 				aposta.setIdUsuario(rs.getInt("id_usuario"));
 				aposta.setIdPartida(rs.getInt("id_partida"));
+				aposta.setIdEquipe(rs.getInt("id_equipe_apostada"));
 				aposta.setValor(rs.getInt("valor_aposta"));
-				aposta.setAtiva(rs.getBoolean("aposta_ativa"));
-				aposta.setVencida(rs.getBoolean("venceu_aposta"));
 				apostas.add(aposta);
 			}
 			
@@ -96,13 +101,12 @@ public class ApostaDAO {
 			stmt.setInt(1, id);
 			Aposta aposta = new Aposta();
 			
-			while (rs.next()) {
+			if (rs.next()) {
 				aposta.setId(rs.getInt("id_aposta"));
 				aposta.setIdUsuario(rs.getInt("id_usuario"));
 				aposta.setIdPartida(rs.getInt("id_partida"));
+				aposta.setIdEquipe(rs.getInt("id_equipe_apostada"));
 				aposta.setValor(rs.getInt("valor_aposta"));
-				aposta.setAtiva(rs.getBoolean("aposta_ativa"));
-				aposta.setVencida(rs.getBoolean("venceu_aposta"));
 			}
 			
 			stmt.execute();
