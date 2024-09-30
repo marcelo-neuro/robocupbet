@@ -15,59 +15,46 @@ import br.com.fiap.robocupbet.dao.UsuarioDAO;
 import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
 
-
-<<<<<<< HEAD
-@WebServlet(urlPatterns = {"/index", "/login", "/criaConta", "/integrantes", ""})
-=======
-@WebServlet(urlPatterns = {"/index", "/login", "/logout" ,"/criaConta", ""})
->>>>>>> 9e83893e78e8e038af5aa9aa2a3b8f6db7e69aea
+@WebServlet(urlPatterns={"/index", "/login", "/logout", "/criaConta", "/integrantes", ""})
 public class AppControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	private UsuarioDAO usuarioDao = new UsuarioDAO(ConnectionPool.getConnection());
 	private PartidaDAO partidaDao = new PartidaDAO(ConnectionPool.getConnection());
 	private IntegranteDAO integranteDao = new IntegranteDAO(ConnectionPool.getConnection());
 	private EquipeDAO equipeDao = new EquipeDAO(ConnectionPool.getConnection());
-    
-    public AppControllerServlet() {
-        super();
-    }
 
-	
+	public AppControllerServlet() {
+		super();
+	}
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String metodo = request.getMethod();
 		String caminho = request.getRequestURI();
 		System.out.println(caminho);
 		System.out.println(metodo);
-		
+
 		if (metodo.equalsIgnoreCase("GET")) {
-			if(caminho.equals("/robocupbet/")) {
+			if (caminho.equals("/robocupbet/")) {
 				getHomePage(request, response);
 			}
-			if(caminho.equals("/robocupbet/index")) {
+			if (caminho.equals("/robocupbet/index")) {
 				getRobobet(request, response);
 			}
-<<<<<<< HEAD
-			if(caminho.equals("/robocupbet/integrantes")) {
+			if (caminho.equals("/robocupbet/integrantes")) {
 				getIntegrantes(request, response);
-=======
-			if(caminho.equals("/robocupbet/logout")) {
+			}
+			if (caminho.equals("/robocupbet/logout")) {
 				logoutUsuario(request, response);
->>>>>>> 9e83893e78e8e038af5aa9aa2a3b8f6db7e69aea
 			}
 		} else if(metodo.equalsIgnoreCase("POST")) {
 			if (caminho.equals("/robocupbet/login")) {
 				postLogin(request, response);
 			}
-			if(caminho.equals("/robocupbet/criaConta")) {
+			if (caminho.equals("/robocupbet/criaConta")) {
 				postCriaConta(request, response);
 			}
 		}
-	}
-	
-	private void logoutUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getSession().invalidate();
-		request.getRequestDispatcher("/homePage.jsp").forward(request, response);
 	}
 
 	private void getHomePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -77,8 +64,8 @@ public class AppControllerServlet extends HttpServlet {
 	private void postLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usuarioEmail = request.getParameter("usuarioEmail");
 		String usuarioSenha = request.getParameter("usuarioSenha");
-	
-		if(usuarioDao.validate(usuarioEmail, Encode.sha256(usuarioSenha))) {
+
+		if (usuarioDao.validate(usuarioEmail, Encode.sha256(usuarioSenha))) {
 			Usuario u = usuarioDao.findByEmail(usuarioEmail);
 			
 			request.getSession().setAttribute("usuario", u);
@@ -86,34 +73,40 @@ public class AppControllerServlet extends HttpServlet {
 		} else {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
-		
+
 	}
 	
+	private void logoutUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().invalidate();
+		getHomePage(request, response);
+	}
+
 	protected void postCriaConta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Usuario u = new Usuario();
 		u.setNome(request.getParameter("usuarioNome"));
 		u.setEmail(request.getParameter("usuarioEmail"));
 		u.setSenha(Encode.sha256(request.getParameter("usuarioSenha")));
-		
+
 		usuarioDao.insert(u);
-		
+
 		request.setAttribute("usuario", u);
 		getRobobet(request, response);
 	}
-	
+
 	private void getRobobet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		carregaRobos(request, response);
 		request.getRequestDispatcher("/robobet.jsp").forward(request, response);
 	}
-	
+
 	private void getIntegrantes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idRobo = Integer.valueOf(request.getParameter("eid"));
 		request.setAttribute("integrantes", integranteDao.findByIdRobo(idRobo));
 		request.setAttribute("equipe", equipeDao.findByIdRobo(idRobo));
 		request.getRequestDispatcher("/integrantes.jsp").forward(request, response);
 	}
-	
-	private void carregaRobos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private void carregaRobos(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setAttribute("lutas", partidaDao.findAllLutasAtivas());
 	}
 }

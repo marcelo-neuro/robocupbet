@@ -34,11 +34,7 @@
 
 		<div
 			class="d-flex flex-column align-items-center bg-fiap-grey form-usuario p-5">
-<<<<<<< HEAD
 			<h2 class="text-light">Equipe: ${equipe.nome}</h2>
-=======
-			<h2 class="text-light">Grupo: -inserir-</h2>
->>>>>>> 9e83893e78e8e038af5aa9aa2a3b8f6db7e69aea
 			<div class="d-flex">
 				<c:forEach items="${integrantes}" var="integrante">
 					<div class="d-flex flex-column align-items-center mx-3">
