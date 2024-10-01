@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.fiap.robocupbet.models.Premio;
 import br.com.fiap.robocupbet.models.Usuario;
 
 public class UsuarioDAO {
@@ -122,7 +124,7 @@ public class UsuarioDAO {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, email);
 			ResultSet rs = stmt.executeQuery();
-			
+
 			Usuario usuario = new Usuario();
 
 			while (rs.next()) {
@@ -142,21 +144,21 @@ public class UsuarioDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public boolean validate(String email, String senha) {
 		boolean res = false;
 		String sql = """
 				SELECT * FROM usuarios
 				WHERE usuarios.email_usuario = ? AND usuarios.senha_usuario = ?
 				""";
-		
+
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, email);
 			ps.setString(2, senha);
 			ResultSet rs = ps.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				res = true;
 				ps.close();
 				rs.close();
@@ -167,4 +169,21 @@ public class UsuarioDAO {
 		}
 		return res;
 	}
+
+	public void insertBoughtReward(int premioId, int usuarioId) {
+		String sql = """
+				INSERT INTO usuarios_premios (id_usuario, id_premio) VALUES (?, ?)
+				""";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, usuarioId);
+			ps.setInt(2, premioId);
+			ps.execute();
+			ps.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
 }

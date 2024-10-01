@@ -1,7 +1,6 @@
 
 
 
-
 document.addEventListener("DOMContentLoaded", function() {
 	const t = document.getElementById("aposta");
 
@@ -19,13 +18,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		const lutaIdA = lutaIds[0];
 		const lutaIdB = lutaIds[1];
 
-		console.log(luta);
-
 		const b = luta.getElementsByClassName("aposta")
-
 		const a = luta.getAttributeNames("aposta");
-		console.log(a);
-		console.log(b);
 
 		const apostaA = luta.querySelector(`input[name="apostaNoA-${lutaIdA}"]`);
 		const apostaB = luta.querySelector(`input[name="apostaNoB-${lutaIdB}"]`);
