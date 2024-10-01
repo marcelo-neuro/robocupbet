@@ -25,8 +25,8 @@ public class ConnectionPool {
 			config.setUsername(ORACLE_USER);
 			config.setPassword(ORACLE_PASSWORD);
 
-			config.setMaximumPoolSize(10);
-			config.setMinimumIdle(5);
+			config.setMaximumPoolSize(2);
+			config.setMinimumIdle(1);
 			config.setIdleTimeout(60000);
 			config.setConnectionTimeout(30000);
 			ds = new HikariDataSource(config);

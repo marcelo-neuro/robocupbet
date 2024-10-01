@@ -15,6 +15,7 @@ import br.com.fiap.robocupbet.dao.IntegranteDAO;
 import br.com.fiap.robocupbet.dao.PartidaDAO;
 import br.com.fiap.robocupbet.dao.PremioDAO;
 import br.com.fiap.robocupbet.dao.UsuarioDAO;
+import br.com.fiap.robocupbet.models.Aposta;
 import br.com.fiap.robocupbet.models.Equipe;
 import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
@@ -112,7 +113,13 @@ public class AppControllerServlet extends HttpServlet {
 		Equipe equipe = equipeDao.findByIdRobo(idRobo);
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 		
+		Aposta aposta = new Aposta();
+		aposta.setIdEquipe(equipe.getId());
+		aposta.setIdPartida(equipe.getIdPartidaAtual());
+		aposta.setIdUsuario(usuario.getId());
+		aposta.setValor(valorAposta);
 		
+		apostaDao.insert(aposta);
 	}
 
 	private void getRobobet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
