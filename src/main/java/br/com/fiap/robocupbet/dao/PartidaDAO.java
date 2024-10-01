@@ -146,6 +146,58 @@ public class PartidaDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public List<List<Robo>> findLutasAtivasNaoApostadasByIdUsuario(int idUsuario) {
+		List<List<Robo>> lutas = new ArrayList<>();
+		String sql = """
+				SELECT r.id_robo, r.nome_robo, r.peso_robo, r.altura_robo, r.largura_robo, r.comprimento_robo, r.url_foto_robo 
+				FROM robos r
+				JOIN equipes e ON r.id_robo = e.id_robo
+				JOIN itens_partidas ip ON e.id_equipe = ip.id_equipe
+				JOIN partidas p ON ip.id_partida = p.id_partida
+				WHERE p.id_equipe_vencedora IS NULL
+				AND p.id_partida NOT IN (
+					SELECT a.id_partida
+					FROM apostas a
+					WHERE a.id_usuario = ?
+				)
+				GROUP BY r.id_robo, r.nome_robo, r.peso_robo, r.altura_robo, r.largura_robo, r.comprimento_robo, r.url_foto_robo
+				""";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idUsuario);
+			ResultSet rs = ps.executeQuery();
+			List<Robo> robos = new ArrayList<>();
+			while (rs.next()) {
+				Robo r = new Robo();
+				r.setId(rs.getInt("id_robo"));
+				r.setNome(rs.getString("nome_robo"));
+				r.setPeso(rs.getDouble("peso_robo"));
+				r.setAltura(rs.getDouble("altura_robo"));
+				r.setLargura(rs.getDouble("largura_robo"));
+				r.setComprimento(rs.getDouble("comprimento_robo"));
+				r.setUrlFoto(rs.getString("url_foto_robo"));
+				robos.add(r);
+				System.out.println(r.getNome());
+			}
+			System.out.println("out");
+			
+			for(int i = 0; i < robos.size();) {
+				lutas.add(new ArrayList<>());
+				for(int j = 0; j < 2; j++) {
+					lutas.get(i/2).add(robos.get(i));
+					i++;
+				}
+			}
+			
+			ps.close();
+			rs.close();
+
+			return lutas;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	private int getLastId() {
 		int res = 0;

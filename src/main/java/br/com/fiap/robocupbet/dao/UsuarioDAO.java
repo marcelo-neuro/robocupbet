@@ -33,7 +33,7 @@ public class UsuarioDAO {
 	}
 
 	public void update(Usuario usuario) {
-		String sql = "UPDATE usuarios SET usuario_nome = ?, email_usuario = ?, senha_usuario = ?, pontos_usuario = ? WHERE id_usuario = ?";
+		String sql = "UPDATE usuarios SET nome_usuario = ?, email_usuario = ?, senha_usuario = ?, pontos_usuario = ? WHERE id_usuario = ?";
 
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
