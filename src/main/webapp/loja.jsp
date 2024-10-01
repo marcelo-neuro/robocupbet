@@ -35,6 +35,12 @@
 		class="container d-flex flex-column justify-content-center align-items-center">
 
 		<h1 class="text-light">Loja de Itens</h1>
+		
+		<c:if test="${not empty errorMessage}">
+            <script>
+                alert('${errorMessage}');
+            </script>
+        </c:if>
 
 		<div
 			class="position-loja form-usuario mt-5 me-5 d-flex flex-column align-items-center">

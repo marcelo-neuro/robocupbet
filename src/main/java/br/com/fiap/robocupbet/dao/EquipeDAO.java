@@ -118,7 +118,7 @@ public class EquipeDAO {
 	public Equipe findByIdRobo(int idRobo) {
 		String sql = """
 				SELECT * FROM equipes
-				WHERE equipes.id_robo = ?
+				WHERE id_robo = ?
 				""";
 		
 		try {
@@ -130,7 +130,7 @@ public class EquipeDAO {
 			if(rs.next()) {
 				e.setId(rs.getInt("id_equipe"));
 				e.setIdRobo(rs.getInt("id_robo"));
-				e.setIdPartidaAtual(rs.getInt("id_partida_atual"));
+				e.setIdPartidaAtual(rs.getInt("id_partida"));
 				e.setNome(rs.getString("nome_equipe"));
 			}
 			return e;
