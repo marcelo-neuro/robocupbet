@@ -29,7 +29,11 @@ public class Usuario {
 	}
 
 	public void setPontos(int pontos) {
-		this.pontos = pontos;
+		if(pontos >= 100) {
+			this.pontos = pontos;
+		}else {			
+			this.pontos = 200;
+		}
 	}
 
 	public String getNome() {
