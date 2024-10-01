@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.fiap.robocupbet.connection.ConnectionPool;
 import br.com.fiap.robocupbet.dao.ApostaDAO;
@@ -107,11 +108,12 @@ public class AppControllerServlet extends HttpServlet {
 	}
 	
 	private void postAposta(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession httpSession = request.getSession();
 		int idRobo = Integer.valueOf(request.getParameter("roboAposta"));
 		int valorAposta = Integer.valueOf(request.getParameter("valorAposta"));
 		
 		Equipe equipe = equipeDao.findByIdRobo(idRobo);
-		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		Usuario usuario = (Usuario) httpSession.getAttribute("usuario");
 		
 		Aposta aposta = new Aposta();
 		aposta.setIdEquipe(equipe.getId());
@@ -119,7 +121,16 @@ public class AppControllerServlet extends HttpServlet {
 		aposta.setIdUsuario(usuario.getId());
 		aposta.setValor(valorAposta);
 		
+		usuario.setPontos(usuario.getPontos() - valorAposta);
+		usuarioDao.update(usuario);
+
 		apostaDao.insert(aposta);
+		
+		carregaRobos(request, response);
+		
+		httpSession.setAttribute("usuario", usuario);
+		
+		request.getRequestDispatcher("/robobet.jsp").forward(request, response);
 	}
 
 	private void getRobobet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -130,7 +141,6 @@ public class AppControllerServlet extends HttpServlet {
 
 	private void getLoja(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("premios", premioDao.findAll());
-		System.out.println(premioDao.findAll());
 		request.getRequestDispatcher("/loja.jsp").forward(request, response);
 	}
 	private void getIntegrantes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -140,8 +150,9 @@ public class AppControllerServlet extends HttpServlet {
 		request.getRequestDispatcher("/integrantes.jsp").forward(request, response);
 	}
 
-	private void carregaRobos(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setAttribute("lutas", partidaDao.findAllLutasInPartida());
+	private void carregaRobos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		int idUsuario = usuario.getId();
+		request.setAttribute("lutas", partidaDao.findLutasAtivasNaoApostadasByIdUsuario(idUsuario));
 	}
 }
