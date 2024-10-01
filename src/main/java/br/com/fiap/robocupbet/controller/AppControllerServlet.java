@@ -190,6 +190,7 @@ public class AppControllerServlet extends HttpServlet {
 
 	private void getAdm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		carregaCriacaoDeRobos(request, response);
+		carregaRobos(request, response);
 		request.getRequestDispatcher("/adm.jsp").forward(request, response);
 	}
 
