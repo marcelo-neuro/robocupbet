@@ -23,8 +23,6 @@
 				<li class="nav-item p-3"><a class="nav-link text-white"
 					href="/robocupbet/loja">Loja</a></li>
 				<li class="nav-item p-3"><a class="nav-link text-white"
-					href="/robocupbet/perfil.jsp">Perfil</a></li>
-				<li class="nav-item p-3"><a class="nav-link text-white"
 					href="/robocupbet/logout">Logout</a></li>
 			</ul>
 		</div>
@@ -35,7 +33,11 @@
 
 		<h1 class="title-cup">Parabéns pela conquista!</h1>
 		<h2 class="text-light mb-5"> Escaneie o QRCode abaixo para resgatar a recompensa!</h2>
-		<img src="assets/icones/qrcodeRick.png" class="w-50">
+		<img src="assets/icones/qrcodeRick.png" class="w-50">	
+		
+		<a href="/robocupbet/loja" class="btn btn-style text-light fw-bold m-3 px-5" >
+			Voltar
+		</a>
 
 	</main>
 

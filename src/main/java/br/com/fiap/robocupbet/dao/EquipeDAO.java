@@ -50,6 +50,23 @@ public class EquipeDAO {
 		}
 	}
 	
+	public void updateFinishPartida(Equipe equipe) {
+		String sql = "UPDATE equipes SET id_equipe = ?, id_robo = ?, id_partida_atual = NULL, nome_equipe = ? WHERE id_equipe IN()";
+		
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, equipe.getId());
+			stmt.setInt(2, equipe.getIdRobo());
+			stmt.setString(3, equipe.getNome());
+			stmt.setInt(4, equipe.getId());
+			stmt.execute();
+			stmt.close();
+			
+		} catch (SQLException e){
+			throw new RuntimeException (e);
+		}
+	}
+	
 	public void delete(int id) {
 		String sql = "DELETE FROM equipes WHERE id_equipe = ?";
 		
@@ -130,7 +147,7 @@ public class EquipeDAO {
 			if(rs.next()) {
 				e.setId(rs.getInt("id_equipe"));
 				e.setIdRobo(rs.getInt("id_robo"));
-				e.setIdPartidaAtual(rs.getInt("id_partida"));
+				e.setIdPartidaAtual(rs.getInt("id_partida_atual"));
 				e.setNome(rs.getString("nome_equipe"));
 			}
 			return e;

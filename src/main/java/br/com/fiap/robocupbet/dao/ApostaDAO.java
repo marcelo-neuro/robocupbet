@@ -7,7 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import br.com.fiap.robocupbet.models.Aposta;
+import br.com.fiap.robocupbet.models.Usuario;
 
 public class ApostaDAO {
 
@@ -115,6 +118,38 @@ public class ApostaDAO {
 			
 			return aposta;
 		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public List<Aposta> findApostasByPartidaEquipe(int idPartida, int idEquipe) {
+		List<Aposta> apostas = new ArrayList<Aposta>();
+		String sql = """
+				select * from apostas a
+				JOIN usuarios u
+				ON u.id_usuario = a.id_usuario
+				WHERE a.id_partida = ? AND a.id_equipe_apostada = ?
+				""";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idPartida);
+			ps.setInt(2, idEquipe);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Aposta aposta = new Aposta();
+				aposta.setId(rs.getInt("id_aposta"));
+				aposta.setIdUsuario(rs.getInt("id_usuario"));
+				aposta.setIdPartida(rs.getInt("id_partida"));
+				aposta.setIdEquipe(rs.getInt("id_equipe_apostada"));
+				aposta.setValor(rs.getInt("valor_aposta"));
+				apostas.add(aposta);
+			}
+			
+			return apostas;
+		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}

@@ -237,3 +237,28 @@ SELECT premios_sequence.NEXTVAL
 INTO :NEW.id_premio
 FROM DUAL;
 END;
+
+drop table usuarios_premios;
+
+CREATE TABLE usuarios_premios (
+    id_compra NUMBER(10) PRIMARY KEY,
+    id_usuario NUMBER(10) NOT NULL,
+    id_premio NUMBER(10) NOT NULL, 
+    data_compra DATE DEFAULT SYSDATE,    
+    CONSTRAINT COMPRAS_USUARIOS_FK FOREIGN KEY (id_usuario) REFERENCES USUARIOS(id_usuario),
+    CONSTRAINT COMPRAS_PREMIOS_FK FOREIGN KEY (id_premio) REFERENCES PREMIO(id_premio)
+);
+
+DROP SEQUENCE usuarios_premios_sequence;
+DROP TRIGGER tr_usuarios_premios_id_compra;
+
+CREATE SEQUENCE usuarios_premios_sequence
+START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER tr_usuarios_premios_id_compra
+BEFORE INSERT ON usuarios_premios FOR EACH ROW
+BEGIN
+SELECT usuarios_premios_sequence.NEXTVAL
+INTO :NEW.id_compra
+FROM DUAL;
+END;
