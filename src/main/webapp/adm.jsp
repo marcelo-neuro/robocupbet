@@ -10,6 +10,12 @@
 <link href="css/styles.css" rel="stylesheet">
 </head>
 <body class="bg-black">
+
+	<c:if test="${not empty errorMessage}">
+		<script>
+			alert('${errorMessage}');
+		</script>
+	</c:if>
 	<main
 		class="container d-flex flex-column justify-content-center align-items-center">
 		<h1 class="title-cup mt-2">Administrador de Apostas</h1>
@@ -72,7 +78,8 @@
 				<c:forEach items="${lutas}" var="luta">
 					<form
 						class="d-flex form-usuario flex-column justify-content-center align-items-center p-5 mt-5  mb-5 w-100"
-						id="luta-${luta[0].id}-${luta[1].id}" method="post" action="finalizaPartida">
+						id="luta-${luta[0].id}-${luta[1].id}" method="post"
+						action="finalizaPartida">
 						<div
 							class="d-flex w-100 justify-content-between align-items-center">
 							<div
@@ -81,9 +88,7 @@
 									<h4 class="text-center text-light fs-4">${luta[0].nome}</h4>
 									<button type="submit"
 										class="button-aposta p-2 text-decoration-none mt-5"
-										name="vencedor" 
-										value="${luta[1].id}"
-										>
+										name="vencedor" value="${luta[1].id}">
 										Escolher vencedor</button>
 								</div>
 
@@ -94,10 +99,9 @@
 								<div class="d-flex align-items-center flex-column ">
 									<h4 class="text-center text-light fs-4">${luta[1].nome}</h4>
 									<button type="submit"
-										class="button-aposta p-2 text-decoration-none mt-5" 
-										name="vencedor"
-										value="${luta[0].id}">
-										Escolher vencedor</button>
+										class="button-aposta p-2 text-decoration-none mt-5"
+										name="vencedor" value="${luta[0].id}">Escolher
+										vencedor</button>
 								</div>
 							</div>
 						</div>

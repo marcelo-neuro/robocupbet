@@ -24,8 +24,6 @@
 				<li class="nav-item p-3"><a class="nav-link text-white"
 					href="/robocupbet/loja">Loja</a></li>
 				<li class="nav-item p-3"><a class="nav-link text-white"
-					href="/robocupbet/perfil.jsp">Perfil</a></li>
-				<li class="nav-item p-3"><a class="nav-link text-white"
 					href="/robocupbet/logout">Logout</a></li>
 			</ul>
 		</div>
@@ -60,7 +58,7 @@
 					<p class="fs-4 text-light">$${premio.valor}</p>
 					
 					<button class="btn btn-style text-light fw-bold m-3 px-5"
-						id="butao" type="submit">Comprar</button>
+						id="butao" type="submit" name="idPremio	" value="${premio.id}">Comprar</button>
 				</form>
 				<span class="w-75 fiap-border"></span>
 			</c:forEach>
