@@ -63,34 +63,46 @@
 				Confirmar aposta</button>
 		</form>
 
-		<div class="d-flex flex-column container align-items-center bg-fiap-grey form-usuario p-5 mt-5">
+		<div
+			class="d-flex flex-column container align-items-center bg-fiap-grey form-usuario p-5 mt-5">
+
+			<h2 class="text-light">Finalizar partida:</h2>
 
 			<div class="d-flex flex-column align-items-center w-100">
 				<c:forEach items="${lutas}" var="luta">
 					<form
 						class="d-flex form-usuario flex-column justify-content-center align-items-center p-5 mt-5  mb-5 w-100"
-						id="luta-${luta[0].id}-${luta[1].id} method="">
-						<div class="d-flex w-100 justify-content-between align-items-center">
+						id="luta-${luta[0].id}-${luta[1].id}" method="post" action="finalizaPartida">
+						<div
+							class="d-flex w-100 justify-content-between align-items-center">
 							<div
-								class="d-flex justify-content-center align-items-center w-100">
-								<div class="d-flex align-items-center flex-column w-50">
+								class="d-flex justify-content-evenly align-items-center w-100">
+								<div class="d-flex align-items-center flex-column ">
 									<h4 class="text-center text-light fs-4">${luta[0].nome}</h4>
+									<button type="submit"
+										class="button-aposta p-2 text-decoration-none mt-5"
+										name="vencedor" 
+										value="${luta[1].id}"
+										>
+										Escolher vencedor</button>
 								</div>
 
 								<div class="d-flex align-items-center justify-content-center">
 									<h5 class="text-center text-light fs-3">VS</h5>
 								</div>
 
-								<div class="d-flex align-items-center flex-column w-50">
+								<div class="d-flex align-items-center flex-column ">
 									<h4 class="text-center text-light fs-4">${luta[1].nome}</h4>
+									<button type="submit"
+										class="button-aposta p-2 text-decoration-none mt-5" 
+										name="vencedor"
+										value="${luta[0].id}">
+										Escolher vencedor</button>
 								</div>
 							</div>
 						</div>
 
 
-						<button type="submit"
-						class="button-aposta p-2 text-decoration-none w-25 mt-5">
-						Remover Partida</button>
 					</form>
 				</c:forEach>
 			</div>

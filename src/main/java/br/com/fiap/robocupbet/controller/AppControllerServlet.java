@@ -16,10 +16,11 @@ import br.com.fiap.robocupbet.dao.PremioDAO;
 import br.com.fiap.robocupbet.dao.RoboDAO;
 import br.com.fiap.robocupbet.dao.UsuarioDAO;
 import br.com.fiap.robocupbet.models.Equipe;
+import br.com.fiap.robocupbet.models.Partida;
 import br.com.fiap.robocupbet.models.Usuario;
 import br.com.fiap.robocupbet.util.Encode;
 
-@WebServlet(urlPatterns = { "/index", "/login", "/logout", "/criaConta", "/integrantes", "/apostar", "/loja", "/adm", "/criaPartida", "" })
+@WebServlet(urlPatterns = { "/index", "/login", "/logout", "/criaConta", "/integrantes", "/apostar", "/loja", "/adm", "/criaPartida", "/finalizaPartida", "" })
 public class AppControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -76,6 +77,9 @@ public class AppControllerServlet extends HttpServlet {
 			if (caminho.equals("/robocupbet/criaPartida")) {
 				postMatch(request, response);
 			}
+			if (caminho.equals("/robocupbet/finalizaPartida")) {
+				finishMatch(request, response);
+			}
 		}
 	}
 
@@ -126,11 +130,20 @@ public class AppControllerServlet extends HttpServlet {
 	private void postMatch(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int idRoboA = Integer.parseInt(request.getParameter("apostaA"));
-		int idRoboB = Integer.parseInt(request.getParameter("apostaB"));
+	    String strRoboA= request.getParameter("apostaA");
+	    String strRoboB = request.getParameter("apostaB");
+	    
+	    if (strRoboA == null || strRoboB == null) {
+	        return;
+	    }
+
+		
+	    int idRoboA = Integer.parseInt(strRoboA);
+	    int idRoboB = Integer.parseInt(strRoboB);
 		
 		if(idRoboA == idRoboB) {
-			getAdm(request, response);
+	        response.sendRedirect("adm"); 
+			return;
 		}
 		
 		Equipe [] equipes = new Equipe[] {equipeDao.findByIdRobo(idRoboA),equipeDao.findByIdRobo(idRoboB) };
@@ -142,6 +155,20 @@ public class AppControllerServlet extends HttpServlet {
 			getAdm(request, response);
 		}
 
+	}
+	
+	private void finishMatch(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String vencedorId = request.getParameter("vencedor"); 
+				
+	    int idVencedor = Integer.parseInt(vencedorId);
+	    
+	    Equipe idEquipe = equipeDao.findByIdRobo(idVencedor);
+	    
+	    Partida partida = partidaDao.findPartidaByEquipeVencedora(idEquipe.getId());
+	    partidaDao.updatePartida(partida);
+	    
+	    getAdm(request, response);
 	}
 	
 	private boolean checkEquipesInPartida(Equipe [] equipes) {
@@ -167,8 +194,8 @@ public class AppControllerServlet extends HttpServlet {
 	    int pontosComprados = Integer.parseInt(request.getParameter("v"));
 
 	    if (u.getPontos() < pontosComprados) {
-		        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-		        return;
+	    	 request.setAttribute("errorMessage", "Você não tem pontos suficientes!");
+	         getLoja(request, response);
 	    }
 
 	    usuarioDao.insertBoughtReward(Integer.parseInt(request.getParameter("p")), u.getId());
